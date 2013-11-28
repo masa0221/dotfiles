@@ -14,6 +14,7 @@ NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'deris/vim-duzzle'
+NeoBundle 'vim-scripts/Wombat'
 
 " -------------------------------------------
 " 外部ファイルの読み込み
