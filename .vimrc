@@ -15,6 +15,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'deris/vim-duzzle'
 NeoBundle 'vim-scripts/Wombat'
+NeoBundle 'jiangmiao/simple-javascript-indenter'
+NeoBundle 'tpope/vim-surround'
 
 " -------------------------------------------
 " 外部ファイルの読み込み
@@ -42,3 +44,6 @@ set listchars=tab:>-
 " set noexpandtab
 " set shiftwidth=4
 " set softtabstop=4
+
+" ビジュアルモード選択でclipboardコピー出来るように
+set clipboard=unnamed,autoselect
