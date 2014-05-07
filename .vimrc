@@ -26,8 +26,8 @@ NeoBundle 'stephpy/vim-php-cs-fixer'
 " -------------------------------------------
 " 外部ファイルの読み込み
 " -------------------------------------------
-if filereadable(expand('~/.vimrc.NERDTree'))
-    source ~/.vimrc.NERDTree
+if filereadable(expand('~/home/.vimrc.NERDTree'))
+    source ~/home/.vimrc.NERDTree
 endif
 
 " -------------------------------------------
@@ -48,7 +48,7 @@ set autoindent
 set listchars=tab:>-
 " set noexpandtab
 " set shiftwidth=4
-" set softtabstop=4
+set softtabstop=4
 
 " ビジュアルモード選択でclipboardコピー出来るように
 set clipboard=unnamed,autoselect
