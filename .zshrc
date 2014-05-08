@@ -1,5 +1,19 @@
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:/usr/local/share/npm/bin/
+######################################
+# zshrc読み込み(ローカルにコレを追記)
+######################################
+# if [ -f ~/home/.zshrc ]; then
+#     source ~/home/.zshrc
+# fi
+######################################
+
+# MySQL
+export MYSQL_PS1='\u@\h[\d] > '
+
+# autojump
+if [ -f `brew --prefix`/etc/autojump ]; then
+    alias j="autojump"
+    . `brew --prefix`/etc/autojump
+fi
 
 ########################################
 # 環境変数
