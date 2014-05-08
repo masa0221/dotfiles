@@ -1,4 +1,12 @@
 " --------------------------------------------
+" ローカルの.vimrcに記載
+" --------------------------------------------
+" if filereadable(expand('~/home/.vimrc'))
+"     source ~/home/.vimrc
+" endif
+" --------------------------------------------
+
+" --------------------------------------------
 " NeoBundle
 " --------------------------------------------
 set nocompatible              " be iMproved
@@ -46,8 +54,8 @@ set list
 " tabの設定
 set autoindent
 set listchars=tab:>-
-" set noexpandtab
-" set shiftwidth=4
+set noexpandtab
+set shiftwidth=4
 set softtabstop=4
 
 " ビジュアルモード選択でclipboardコピー出来るように
