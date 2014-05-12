@@ -54,7 +54,7 @@ set list
 " tabの設定
 set autoindent
 set listchars=tab:>-
-set noexpandtab
+" set noexpandtab " タブ文字の挿入
 set shiftwidth=4
 set softtabstop=4
 
