@@ -30,6 +30,11 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'stephpy/vim-php-cs-fixer'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'JavaScript-syntax'
+
+" color scheme
+" NeoBundle 'altercation/vim-colors-solarized'
 
 " -------------------------------------------
 " 外部ファイルの読み込み
@@ -37,6 +42,13 @@ NeoBundle 'stephpy/vim-php-cs-fixer'
 if filereadable(expand('~/home/.vimrc.NERDTree'))
     source ~/home/.vimrc.NERDTree
 endif
+
+" -------------------------------------------
+" 色設定
+" ------------------------------------------
+" syntax enable
+" set background=dark
+" colorscheme solarized
 
 " -------------------------------------------
 " 一般設定
@@ -58,6 +70,7 @@ set listchars=tab:>-
 set expandtab " ソフトタブ
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 
 " ビジュアルモード選択でclipboardコピー出来るように
 set clipboard=unnamed,autoselect
