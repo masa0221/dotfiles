@@ -32,6 +32,13 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'stephpy/vim-php-cs-fixer'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
+" syntax + 自動compile
+NeoBundle 'kchmck/vim-coffee-script'
+" js BDDツール
+NeoBundle 'claco/jasmine.vim'
+" indentの深さに色を付ける
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
 
 " color scheme
 " NeoBundle 'altercation/vim-colors-solarized'
@@ -69,7 +76,7 @@ set listchars=tab:>-
 " set noexpandtab " タブ文字の挿入
 set expandtab " ソフトタブ
 set shiftwidth=4
-set softtabstop=4
+set softtabstop=0
 set tabstop=4
 
 " ビジュアルモード選択でclipboardコピー出来るように
