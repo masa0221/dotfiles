@@ -85,6 +85,10 @@ set clipboard=unnamed,autoselect
 " 行を強調表示
 set cursorline
 
+" vimにcoffeeファイルタイプを認識させる
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+" インデントを設定
+autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
 
 " if php-cs-fixer is in $PATH, you don't need to define line below
 let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
