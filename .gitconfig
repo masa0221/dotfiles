@@ -5,5 +5,21 @@
 # #################################
 
 [alias]
+# aliasサンプル
+#    co = checkout
+#    st = status -s
+#    diff = diff -w
+#    pull = pull --rebase
+#    df = diff -w --word-diff=color
+#    df-narrow = diff -w --word-diff=color --word-diff-regex=.
+#    df-files = diff --name-only
+#    lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar%Creset'
+#    merge = merge --no-ff
+#    today = log --oneline --since='12 hour ago' --author='tanaka' --all
     hist = log --pretty=format:\\\"%h %ad | %s%d [%an]\\\" --graph --date=short
     tree = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+    co = checkout
+    st = status -s
+
+
+
