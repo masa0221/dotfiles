@@ -1,7 +1,8 @@
 # #################################
 # ~/.gitconfig に以下の設定を追記
+# (このファイルが~/home/以下にある場合)
 # [include]
-#     path = $HOME/home/.gitconfig
+#     path = ~/home/.gitconfig
 # #################################
 
 [alias]
