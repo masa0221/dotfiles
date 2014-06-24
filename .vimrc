@@ -39,6 +39,8 @@ NeoBundle 'claco/jasmine.vim'
 " indentの深さに色を付ける
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
+" markdownのプラグインについて
+" http://www.key-p.com/blog/staff/archives/9032
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
