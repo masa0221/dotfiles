@@ -45,6 +45,8 @@ NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 
+NeoBundle 'Lokaltog/vim-easymotion'
+
 " color scheme
 " NeoBundle 'altercation/vim-colors-solarized'
 
