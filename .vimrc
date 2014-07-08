@@ -106,8 +106,7 @@ autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 
 " if php-cs-fixer is in $PATH, you don't need to define line below
 let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
-" let g:php_cs_fixer_level = "all"                  " which level ?
-let g:php_cs_fixer_level = "PSR2"                  " which level ?
+let g:php_cs_fixer_level = "all"                  " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
 let g:php_cs_fixer_php_path = "/usr/local/bin/php"               " Path to PHP
 " If you want to define specific fixers:
