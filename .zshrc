@@ -10,9 +10,9 @@
 export MYSQL_PS1='\u@\h[\d] > '
 
 # autojump
-if [ -f `brew --prefix`/etc/autojump ]; then
+if [ -f `brew --prefix`/bin/autojump ]; then
     alias j="autojump"
-    . `brew --prefix`/etc/autojump
+    `brew --prefix`/bin/autojump
 fi
 
 ########################################
@@ -69,20 +69,6 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
-
-########################################
-# vcs_info
-
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-precmd () {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-RPROMPT="%1(v|%F{green}%1v%f|)"
 
 
 ########################################
