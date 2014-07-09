@@ -1,12 +1,4 @@
 " --------------------------------------------
-" ローカルの.vimrcに記載
-" --------------------------------------------
-" if filereadable(expand('~/home/.vimrc'))
-"     source ~/home/.vimrc
-" endif
-" --------------------------------------------
-
-" --------------------------------------------
 " NeoBundle
 " --------------------------------------------
 set nocompatible              " be iMproved
@@ -53,8 +45,8 @@ NeoBundle 'Lokaltog/vim-easymotion'
 " -------------------------------------------
 " 外部ファイルの読み込み
 " -------------------------------------------
-if filereadable(expand('~/home/.vimrc.NERDTree'))
-    source ~/home/.vimrc.NERDTree
+if filereadable(expand('~/dotfiles/.vimrc.NERDTree'))
+    source ~/dotfiles/.vimrc.NERDTree
 endif
 
 " -------------------------------------------

@@ -12,14 +12,11 @@ tap josegonzalez/php
 tap peco/peco
 
 # Install brew-cask
-tap phinze/homebrew-cask
 install brew-cask
 
 # Install brew-packages
-install zsh
 install ansible
 install autojump
-install brew-cask
 install casperjs
 install ccze
 install emacs
@@ -28,14 +25,6 @@ install gnu-sed
 install nginx
 install node
 install peco
-install php-cs-fixer
-install play
-install python3
-install rbenv
-install rlwrap
-install ruby-build
-install sbt
-install scala
 install the_silver_searcher
 install tig
 install tree
@@ -53,10 +42,9 @@ cask install skype
 cask install sublime-text3
 cask install filezilla
 cask install bettertouchtool
-cask install openoffice
 cask install skitch
 cask install snagit
-cask install onepassword
+# cask install onepassword 勝手に最新バージョンが入るのでコメントアウト
 cask install mou
 
 

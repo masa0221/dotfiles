@@ -1,11 +1,3 @@
-######################################
-# zshrc読み込み(ローカルにコレを追記)
-######################################
-# if [ -f ~/home/.zshrc ]; then
-#     source ~/home/.zshrc
-# fi
-######################################
-
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
@@ -35,13 +27,15 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# プロンプト
-# 1行表示
-# PROMPT="%~ %# "
-# 2行表示
-PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
-%# "
+# oh my zsh
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="pmcgee"
 
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+# 右の時間だけいらないから上書き
+RPROMPT=''
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
