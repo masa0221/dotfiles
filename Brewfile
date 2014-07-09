@@ -12,7 +12,6 @@ tap josegonzalez/php
 tap peco/peco
 
 # Install brew-cask
-tap phinze/homebrew-cask
 install brew-cask
 
 # Install brew-packages
