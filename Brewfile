@@ -16,6 +16,7 @@ tap phinze/homebrew-cask
 install brew-cask
 
 # Install brew-packages
+install zsh
 install ansible
 install autojump
 install brew-cask
