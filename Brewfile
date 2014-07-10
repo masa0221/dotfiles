@@ -40,11 +40,11 @@ cask install google-chrome
 cask install google-drive
 cask install skype
 cask install sublime-text3
-cask install filezilla
+cask install firefox-ja
 cask install bettertouchtool
 cask install skitch
 cask install snagit
-# cask install onepassword 勝手に最新バージョンが入るのでコメントアウト
+cask install onepassword3 勝手に最新バージョンが入るのでコメントアウト
 cask install mou
 
 
