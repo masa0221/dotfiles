@@ -1,6 +1,9 @@
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
+# brew cask option 
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+
 # autojump
 if [ -f `brew --prefix`/bin/autojump ]; then
     alias j="autojump"
