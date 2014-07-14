@@ -7,6 +7,11 @@ if [ -f `brew --prefix`/bin/autojump ]; then
     `brew --prefix`/bin/autojump
 fi
 
+# composer 
+if [ -d $HOME/.composer/vendor/bin ]; then 
+    export PATH="$PATH:$HOME/.composer/vendor/bin"
+fi
+
 ########################################
 # 環境変数
 export LANG=ja_JP.UTF-8

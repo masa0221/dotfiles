@@ -7,9 +7,11 @@ upgrade
 # Add repositories
 tap caskroom/cask
 tap caskroom/homebrew-versions
-tap homebrew/dupes
 tap josegonzalez/php
 tap peco/peco
+tap homebrew/homebrew-php
+tap homebrew/dupes
+tap homebrew/versions
 
 # Install brew-cask
 install brew-cask
@@ -30,6 +32,8 @@ install tig
 install tree
 install vim
 install wget
+install php55-intl
+install homebrew/php/composer
 
 # Install cask-packages
 cask install virtualbox
@@ -44,7 +48,7 @@ cask install firefox-ja
 cask install bettertouchtool
 cask install skitch
 cask install snagit
-cask install onepassword3 勝手に最新バージョンが入るのでコメントアウト
+cask install onepassword3
 cask install mou
 
 
