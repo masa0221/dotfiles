@@ -39,7 +39,6 @@ install homebrew/php/composer
 cask install virtualbox
 cask install vagrant
 cask install iterm2
-cask install firefox
 cask install google-chrome
 cask install google-drive
 cask install skype
@@ -50,6 +49,7 @@ cask install skitch
 cask install snagit
 cask install onepassword3
 cask install mou
+cask install filezilla
 
 
 # Remove outdated version

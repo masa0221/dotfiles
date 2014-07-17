@@ -1,11 +1,19 @@
 #!/bin/bash
 
-DOT_FILES=(.zshrc .gitconfig .vimrc)
+DOT_FILES=(.zshrc .gitconfig .gitignore .vimrc)
 
 for file in ${DOT_FILES[@]}; do 
+    if [ -f $HOME/$file ] 
         ln -s $HOME/dotfiles/$file $HOME/$file
+    fi
 done
 
-[ ! -d ~/.oh-my-zsh ] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+if [ ! -d ~/.oh-my-zsh ]
+    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+fi
 
-[ ! -d ~/.vim/bundle ] && mkdir -p ~/.vim/bundle && git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim && vim -c ':NeoBundleInstall'
+if [ ! -d ~/.vim/bundle ]
+    mkdir -p ~/.vim/bundle
+    git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+    vim -c ':NeoBundleInstall'
+fi

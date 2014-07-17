@@ -2,7 +2,7 @@
 export MYSQL_PS1='\u@\h[\d] > '
 
 # brew cask option 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # autojump
 if [ -f `brew --prefix`/bin/autojump ]; then
