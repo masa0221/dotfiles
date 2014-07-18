@@ -1,6 +1,9 @@
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
+# brew で入るパッケージを優先
+export PATH=/usr/local/bin:$PATH
+
 # brew cask option 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
