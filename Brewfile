@@ -34,6 +34,7 @@ install vim
 install wget
 install php55-intl
 install homebrew/php/composer
+install node.js
 
 # Install cask-packages
 cask install virtualbox
