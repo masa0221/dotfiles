@@ -1,6 +1,11 @@
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
+# nodebrew
+if [ -d $HOME/.nodebrew ]; then 
+    export PATH=$HOME/.nodebrew/current/bin:$PATH
+fi
+
 # brew で入るパッケージを優先
 export PATH=/usr/local/bin:$PATH
 
