@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(.zshrc .gitconfig .vimrc)
+DOT_FILES=(.zshrc .gitconfig .gitignore .vimrc)
 
 for file in ${DOT_FILES[@]}; do 
     if [ ! -f $HOME/$file ]; then 
