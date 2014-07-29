@@ -51,6 +51,7 @@ cask install snagit
 cask install onepassword3
 cask install mou
 cask install filezilla
+cask install screenhero
 
 
 # Remove outdated version
