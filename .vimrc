@@ -67,8 +67,8 @@ NeoBundleCheck
 " -------------------------------------------
 " 外部ファイルの読み込み
 " -------------------------------------------
-if filereadable(expand('~/dotfiles/.vimrc.NERDTree'))
-    source ~/dotfiles/.vimrc.NERDTree
+if filereadable(expand('~/.dotfiles/.vimrc.NERDTree'))
+    source ~/.dotfiles/.vimrc.NERDTree
 endif
 
 " -------------------------------------------
