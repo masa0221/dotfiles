@@ -52,6 +52,7 @@ cask install onepassword3
 cask install mou
 cask install filezilla
 cask install screenhero
+cask install openoffice
 
 
 # Remove outdated version
