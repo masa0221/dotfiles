@@ -53,6 +53,8 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 
+NeoBundle 'derekwyatt/vim-scala'
+
 " color scheme
 " NeoBundle 'altercation/vim-colors-solarized'
 
