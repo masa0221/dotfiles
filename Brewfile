@@ -53,6 +53,7 @@ cask install mou
 cask install filezilla
 cask install screenhero
 cask install openoffice
+cask install intellij-idea-ce
 
 
 # Remove outdated version
