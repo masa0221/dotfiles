@@ -36,6 +36,14 @@ install php55-intl
 install homebrew/php/composer
 install nodebrew
 
+# ruby
+install rbenv
+install ruby-build
+install rbenv-gemset
+install rbenv-gem-rehash
+install readline
+install apple-gcc42
+
 # Install cask-packages
 cask install virtualbox
 cask install vagrant
