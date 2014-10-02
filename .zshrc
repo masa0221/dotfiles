@@ -12,6 +12,9 @@ export PATH=/usr/local/bin:$PATH
 # brew cask option 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+# vim alias
+alias vi='vim'
+
 # autojump
 if [ -f `brew --prefix`/bin/autojump ]; then
     alias j="autojump"
@@ -47,7 +50,7 @@ SAVEHIST=1000000
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="pmcgee"
 
-plugins=(brew git git-flow sublime vagrant)
+plugins=(brew git git-flow sublime vagrant autojump composer)
 source $ZSH/oh-my-zsh.sh
 
 # 右の時間だけいらないから上書き
