@@ -3,7 +3,7 @@
 DOT_FILES=(.zshrc .gitconfig .gitignore .vimrc)
 
 for file in ${DOT_FILES[@]}; do 
-    ln -fi $HOME/.dotfiles/$file $HOME/$file
+    ln -s -f $HOME/.dotfiles/$file $HOME/$file
 done
 
 if [ ! -d ~/.vim/bundle ]; then
