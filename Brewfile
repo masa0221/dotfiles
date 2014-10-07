@@ -41,6 +41,7 @@ install rbenv
 install ruby-build
 install rbenv-gemset
 install rbenv-gem-rehash
+install rbenv-default-gems
 install readline
 install apple-gcc42
 

@@ -26,6 +26,12 @@ if [ -d $HOME/.composer/vendor/bin ]; then
     export PATH="$PATH:$HOME/.composer/vendor/bin"
 fi
 
+# rbenv
+if [ `which rbenv` > /dev/null 2>&1 ]; then 
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
 ########################################
 # 環境変数
 export LANG=ja_JP.UTF-8
