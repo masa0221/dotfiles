@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(.zshrc .gitconfig .gitignore .vimrc)
+DOT_FILES=(.zshrc .gitconfig .gitignore .vimrc .peco)
 
 for file in ${DOT_FILES[@]}; do 
     ln -s -f $HOME/.dotfiles/$file $HOME/$file
