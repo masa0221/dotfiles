@@ -35,6 +35,7 @@ brew install wget
 brew install php55-intl
 brew install homebrew/php/composer
 brew install nodebrew
+brew install tmux
 
 # ruby
 brew install rbenv
