@@ -109,6 +109,7 @@ setopt auto_cd
 
 # cd したら自動的にpushdする
 setopt auto_pushd
+
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
 
@@ -136,11 +137,6 @@ setopt auto_menu
 # 高機能なワイルドカード展開を使用する
 setopt extended_glob
 
-########################################
-# キーバインド
-
-# ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
-bindkey '^R' history-incremental-pattern-search-backward
 
 ########################################
 # エイリアス
@@ -154,26 +150,11 @@ alias mv='mv -i'
 
 alias mkdir='mkdir -p'
 
+########################################
+# peco
+
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
-
-# グローバルエイリアス
-alias -g L='| less'
-alias -g G='| grep'
-
-# C で標準出力をクリップボードにコピーする
-# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
-if which pbcopy >/dev/null 2>&1 ; then
-    # Mac
-    alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-    # Linux
-    alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-    # Cygwin
-    alias -g C='| putclip'
-fi
-
 
 # vim をpeco で開く
 function peco-dir-open-app () {
@@ -199,18 +180,3 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history # C-r
-
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-    darwin*)
-        #Mac用の設定
-        export CLICOLOR=1
-        alias ls='ls -G -F'
-        ;;
-    linux*)
-        #Linux用の設定
-        ;;
-esac
-
-# vim:set ft=zsh:
