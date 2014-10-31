@@ -18,6 +18,7 @@
     co = checkout
     st = status --short --branch
     rm-all = "!f () { git rm $(git ls-files -d); }; f"
+    fc = fetch -p
 
 [include]
     path = ~/.gitconfig-user
