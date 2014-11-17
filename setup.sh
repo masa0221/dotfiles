@@ -2,8 +2,8 @@
 
 DOT_FILES=(.zshrc .gitconfig .gitignore .vimrc .peco .tmux.conf)
 
-for file in ${DOT_FILES[@]}; do 
-    ln -s -f $HOME/.dotfiles/$file $HOME/$file
+for DOT_FILE in ${DOT_FILES[@]}; do 
+    ln -s -f $HOME/.dotfiles/$DOT_FILE $HOME/$DOT_FILE
 done
 
 if [ ! -d ~/.vim/bundle ]; then
@@ -12,13 +12,11 @@ if [ ! -d ~/.vim/bundle ]; then
     vim -c ':NeoBundleInstall'
 fi
 
-echo "Install oh-my-zsh ? (y/n):"
-read answer
+if [ ! -d ~/.oh-my-zsh ]; then
+    echo "Do you want to install oh-my-zsh ? (Yes/No):"
+    read ANSWER
 
-if [ "${answer} = "Y" or "${answer} = "y" ]; then
-    if [ ! -d ~/.oh-my-zsh ]; then
+    if [ "${ANSWER} = "Y" or "${ANSWER} = "y" or "${ANSWER} = "yes" ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
 fi
-
-echo 'Finished!'
