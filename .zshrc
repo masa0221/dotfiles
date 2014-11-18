@@ -56,7 +56,7 @@ SAVEHIST=1000000
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="pmcgee"
 
-plugins=(brew git git-flow sublime vagrant autojump composer ruby rbenv gem osx npm node)
+plugins=(brew git git-flow sublime vagrant autojump composer ruby rbenv gem osx npm node tmux aws)
 source $ZSH/oh-my-zsh.sh
 
 # 右の時間だけいらないから上書き
