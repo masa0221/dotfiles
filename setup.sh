@@ -13,7 +13,7 @@ if [ ! -d ~/.vim/bundle ]; then
 fi
 
 if [ ! -d ~/.oh-my-zsh ]; then
-    echo "Do you want to install oh-my-zsh ? (Yes/No):"
+    echo "Do you want to install oh-my-zsh ? (y/n):"
     read ANSWER
 
     if [ "${ANSWER} = "Y" or "${ANSWER} = "y" or "${ANSWER} = "yes" ]; then

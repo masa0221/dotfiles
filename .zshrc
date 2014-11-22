@@ -1,10 +1,7 @@
-# MySQL
-export MYSQL_PS1='\u@\h[\d] > '
-
-# nodebrew
-if [ -d $HOME/.nodebrew ]; then 
-    export PATH=$HOME/.nodebrew/current/bin:$PATH
-fi
+########################################
+# 環境変数
+########################################
+export LANG=ja_JP.UTF-8
 
 # brew で入るパッケージを優先
 export PATH=/usr/local/bin:$PATH
@@ -12,55 +9,29 @@ export PATH=/usr/local/bin:$PATH
 # brew cask option 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# vim alias
-alias vi='vim'
-
-# autojump
-if [ -f `brew --prefix`/bin/autojump ]; then
-    alias j="autojump"
-    `brew --prefix`/bin/autojump
+# nodebrew
+if [ -d $HOME/.nodebrew ]; then 
+    export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
-# composer 
-if [ -d $HOME/.composer/vendor/bin ]; then 
-    export PATH="$PATH:$HOME/.composer/vendor/bin"
-fi
-
-# rbenv
-if [ `which rbenv` > /dev/null 2>&1 ]; then 
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-fi
+# MySQL
+export MYSQL_PS1='\u@\h[\d] > '
 
 ########################################
-# 環境変数
-export LANG=ja_JP.UTF-8
-
-
-# 色を使用出来るようにする
-autoload -Uz colors
-colors
-
-# ls の色を変更
-export LSCOLORS=gxfxcxdxbxegedabagacad
-
-# emacs 風キーバインドにする
-bindkey -e
-
-# ヒストリの設定
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-
 # oh my zsh
+########################################
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="pmcgee"
 
-plugins=(brew git git-flow sublime vagrant autojump composer ruby rbenv gem osx npm node tmux aws)
+plugins=(brew git git-flow sublime vagrant autojump composer ruby rbenv gem npm node tmux aws)
 source $ZSH/oh-my-zsh.sh
 
 # 右の時間だけいらないから上書き
 RPROMPT=''
+
+########################################
+# 単語設定/補完
+########################################
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -70,8 +41,6 @@ select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
-########################################
-# 補完
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
@@ -92,6 +61,7 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
 ########################################
 # オプション
+########################################
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
 
@@ -140,6 +110,7 @@ setopt extended_glob
 
 ########################################
 # エイリアス
+########################################
 
 alias la='ls -a'
 alias ll='ls -l'
@@ -150,11 +121,15 @@ alias mv='mv -i'
 
 alias mkdir='mkdir -p'
 
-########################################
-# peco
+alias vi='vim'
+alias j='autojump'
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
+
+########################################
+# peco
+########################################
 
 # vim をpeco で開く
 function peco-dir-open-app () {
