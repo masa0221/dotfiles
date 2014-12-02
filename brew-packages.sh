@@ -37,6 +37,7 @@ brew install homebrew/php/composer
 brew install nodebrew
 brew install tmux
 brew install awscli
+brew install reattach-to-user-namespace
 
 # ruby
 brew install rbenv
