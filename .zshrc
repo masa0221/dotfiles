@@ -137,7 +137,7 @@ function peco-dir-open-app () {
     zle clear-screen
 }
 zle -N peco-dir-open-app
-bindkey '^vp' peco-dir-open-app     # C-v p
+bindkey '^v^r' peco-dir-open-app     # C-v C-r
 
 # historyをpecoでanyting search
 function peco-select-history() {
