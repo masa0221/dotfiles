@@ -54,6 +54,10 @@ NeoBundle 'terryma/vim-multiple-cursors'
 
 NeoBundle 'derekwyatt/vim-scala'
 
+" git
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'kmnk/vim-unite-giti.git'
+
 " color scheme
 " NeoBundle 'altercation/vim-colors-solarized'
 
