@@ -77,6 +77,10 @@ if filereadable(expand('~/.dotfiles/.vimrc.NERDTree'))
     source ~/.dotfiles/.vimrc.NERDTree
 endif
 
+if filereadable(expand('~/.dotfiles/.vimrc.unite'))
+    source ~/.dotfiles/.vimrc.unite
+endif
+
 " -------------------------------------------
 " 色設定
 " ------------------------------------------
