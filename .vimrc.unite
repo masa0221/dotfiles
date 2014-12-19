@@ -12,6 +12,7 @@ nnoremap <silent> [unite]r :<C-u>Unite<Space>file<CR>
 nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer<CR>
 nnoremap <silent> [unite]b :<C-u>Unite<Space>bookmark<CR>
 nnoremap <silent> [unite]r :<C-u>UniteWithBufferDir file<CR>
+nnoremap <silent> [unite]y :<C-u>Unite<Space>history/yank<CR>
 nnoremap <silent> ,vr :UniteResume<CR>
 
 " vinarise
