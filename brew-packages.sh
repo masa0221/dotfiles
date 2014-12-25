@@ -60,7 +60,6 @@ brew cask install firefox-ja
 brew cask install bettertouchtool
 brew cask install skitch
 brew cask install snagit
-brew cask install onepassword3
 brew cask install mou
 brew cask install filezilla
 brew cask install screenhero
