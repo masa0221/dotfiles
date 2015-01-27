@@ -119,7 +119,8 @@ set cursorline
 " vimにmdファイルタイプを認識させる
 au BufRead,BufNewFile *.md set filetype=markdown
 " 開いた状態にする
-let g:vim_markdown_initial_foldlevel=3
+" let g:vim_markdown_initial_foldlevel=3
+set nofoldenable
 
 " vimにcoffeeファイルタイプを認識させる
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
