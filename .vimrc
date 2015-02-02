@@ -97,6 +97,7 @@ syntax on
 
 set nu " 行番号
 colo wombat " 色設定
+set hlsearch
 
 " 空白文字とかの設定
 set list
