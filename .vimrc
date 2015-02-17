@@ -27,7 +27,7 @@ NeoBundle 'Shougo/neocomplcache'
 " NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/nerdtree.git'
-" NeoBundle 'vim-scripts/Wombat'
+NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'kien/ctrlp.vim'
 
 " haskell
@@ -46,6 +46,9 @@ NeoBundle 'derekwyatt/vim-scala'
 " SQL
 NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundle 'Align' " SQLUtilitiesで必要
+
+" color scheme
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
@@ -68,8 +71,9 @@ endif
 " 色設定
 " ------------------------------------------
 " syntax enable
-" set background=dark
+set background=dark
 " colorscheme solarized
+" colo wombat " 色設定
 
 " -------------------------------------------
 " 一般設定
