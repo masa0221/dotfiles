@@ -47,6 +47,9 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundle 'Align' " SQLUtilitiesで必要
 
+" git
+NeoBundle 'airblade/vim-gitgutter'
+
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
 
