@@ -7,7 +7,6 @@ brew upgrade
 # Add repositories
 brew tap caskroom/cask
 brew tap caskroom/homebrew-versions
-brew tap josegonzalez/php
 brew tap peco/peco
 brew tap homebrew/dupes
 brew tap homebrew/versions
