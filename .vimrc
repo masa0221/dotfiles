@@ -89,6 +89,7 @@ set hlsearch
 
 " 空白文字とかの設定
 set list
+set backspace=2
 
 " tabの設定
 set autoindent
