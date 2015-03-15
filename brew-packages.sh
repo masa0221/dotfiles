@@ -7,9 +7,7 @@ brew upgrade
 # Add repositories
 brew tap caskroom/cask
 brew tap caskroom/homebrew-versions
-brew tap josegonzalez/php
 brew tap peco/peco
-brew tap homebrew/homebrew-php
 brew tap homebrew/dupes
 brew tap homebrew/versions
 
@@ -32,7 +30,6 @@ brew install tig
 brew install tree
 brew install vim
 brew install wget
-brew install php55-intl
 brew install homebrew/php/composer
 brew install nodebrew
 brew install tmux

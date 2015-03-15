@@ -35,7 +35,8 @@ NeoBundle 'ujihisa/neco-ghc'
 
 " markdownのプラグインについて
 " http://www.key-p.com/blog/staff/archives/9032
-NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 
@@ -89,6 +90,7 @@ set hlsearch
 
 " 空白文字とかの設定
 set list
+set backspace=2
 
 " tabの設定
 set autoindent
