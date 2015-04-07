@@ -17,6 +17,9 @@ fi
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
+# color setting
+export TERM=xterm-256color
+
 ########################################
 # oh my zsh
 ########################################

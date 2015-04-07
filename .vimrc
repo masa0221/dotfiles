@@ -54,6 +54,9 @@ NeoBundle 'airblade/vim-gitgutter'
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
 
+" statusline
+NeoBundle 'itchyny/lightline.vim'
+
 call neobundle#end()
 
  " If there are uninstalled bundles found on startup,
@@ -78,6 +81,7 @@ endif
 set background=dark
 " colorscheme solarized
 " colo wombat " 色設定
+highlight clear SignColumn
 
 " -------------------------------------------
 " 一般設定
@@ -87,6 +91,20 @@ syntax on
 
 set nu " 行番号
 set hlsearch
+
+" statusline
+set laststatus=2
+
+let g:lightline = {
+      \ 'active': {
+      \     'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_visible_condition': {
+      \     'readonly': '(&filetype!="help"&& &readonly)',
+      \     'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
+      \ }
+      \ }
 
 " 空白文字とかの設定
 set list
