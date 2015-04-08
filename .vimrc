@@ -53,6 +53,7 @@ NeoBundle 'airblade/vim-gitgutter'
 
 " color scheme
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tomasr/molokai'
 
 " statusline
 NeoBundle 'itchyny/lightline.vim'
@@ -77,17 +78,20 @@ endif
 " -------------------------------------------
 " 色設定
 " ------------------------------------------
-" syntax enable
+syntax on
 set background=dark
-" colorscheme solarized
-" colo wombat " 色設定
-highlight clear SignColumn
+colorscheme molokai
+let g:rehash256 = 1
+highlight Normal ctermbg=none
+highlight LineNr ctermbg=none
+" highlight SignColumn ctermbg=none
+" highlight VertSplit ctermbg=none
+" highlight NonText ctermbg=none
 
 " -------------------------------------------
 " 一般設定
 " ------------------------------------------
 filetype plugin indent on     " required!
-syntax on
 
 set nu " 行番号
 set hlsearch
