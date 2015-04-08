@@ -82,11 +82,14 @@ syntax on
 set background=dark
 colorscheme molokai
 let g:rehash256 = 1
+let g:molokai_original = 1
 highlight Normal ctermbg=none
 highlight LineNr ctermbg=none
 " highlight SignColumn ctermbg=none
 " highlight VertSplit ctermbg=none
 " highlight NonText ctermbg=none
+highlight Comment       ctermfg=50  " コメント
+highlight Delimiter     ctermfg=262 " 括弧(キモいからあとで調整
 
 " -------------------------------------------
 " 一般設定
