@@ -25,38 +25,39 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 " NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/nerdtree.git'
-NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
 
-" haskell
-NeoBundle 'ujihisa/neco-ghc'
+" color scheme
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'vim-scripts/Wombat'
 
-" markdownのプラグインについて
-" http://www.key-p.com/blog/staff/archives/9032
+" git
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive'
+
+" all-lang
+NeoBundle 'thinca/vim-quickrun'
+
+" markdown
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 
-NeoBundle 'terryma/vim-multiple-cursors'
-
+" scala
 NeoBundle 'derekwyatt/vim-scala'
+
+" haskell
+NeoBundle 'ujihisa/neco-ghc'
 
 " SQL
 NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundle 'Align' " SQLUtilitiesで必要
-
-" git
-NeoBundle 'airblade/vim-gitgutter'
-
-" color scheme
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'tomasr/molokai'
-
-" statusline
-NeoBundle 'itchyny/lightline.vim'
 
 call neobundle#end()
 
