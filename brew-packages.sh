@@ -17,12 +17,8 @@ brew install brew-cask
 # Install brew-packages
 brew install ansible
 brew install autojump
-brew install casperjs
-brew install ccze
-brew install emacs
 brew install git-flow
 brew install gnu-sed
-brew install nginx
 brew install node
 brew install peco
 brew install the_silver_searcher
@@ -35,8 +31,9 @@ brew install nodebrew
 brew install tmux
 brew install awscli
 brew install reattach-to-user-namespace
+brew install ctags
 
-# ruby
+# Install ruby packages
 brew install rbenv
 brew install ruby-build
 brew install rbenv-gemset
@@ -52,14 +49,11 @@ brew cask install iterm2
 brew cask install google-chrome
 brew cask install google-drive
 brew cask install skype
-brew cask install sublime-text3
 brew cask install firefox-ja
 brew cask install bettertouchtool
 brew cask install skitch
-brew cask install snagit
 brew cask install mou
 brew cask install filezilla
-brew cask install screenhero
 brew cask install openoffice
 brew cask install intellij-idea-ce
 
