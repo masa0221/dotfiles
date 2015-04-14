@@ -42,6 +42,7 @@ NeoBundle 'tpope/vim-fugitive'
 
 " all-lang
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'szw/vim-tags'
 
 " markdown
 NeoBundle 'tpope/vim-markdown'
@@ -132,6 +133,9 @@ set clipboard=unnamed,autoselect
 
 " 行を強調表示
 set cursorline
+
+" vim-tags
+autocmd BufNewFile,BufRead *.php let g:vim_tags_project_tags_command = "ctags --languages=php -f ~/php.tags `pwd` 2>/dev/null &"
 
 " vimにmdファイルタイプを認識させる
 autocmd BufRead,BufNewFile *.md set filetype=markdown
