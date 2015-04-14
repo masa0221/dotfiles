@@ -121,7 +121,7 @@ set backspace=2
 
 " tabの設定
 set autoindent
-set listchars=tab:>-
+set listchars=eol:¶,tab:▸\ 
 " set noexpandtab " タブ文字の挿入
 set expandtab " ソフトタブ
 set shiftwidth=4
