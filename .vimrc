@@ -107,11 +107,15 @@ set laststatus=2
 let g:lightline = {
       \ 'active': {
       \     'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \     'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
       \ 'component_visible_condition': {
       \     'readonly': '(&filetype!="help"&& &readonly)',
-      \     'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
+      \     'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \     'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ }
       \ }
 
