@@ -152,6 +152,7 @@ autocmd BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 
 " インデントを設定
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+autocmd FileType html setlocal sw=2 sts=2 ts=2 et
 
 " SQLUtilities
 let g:sqlutil_align_comma = 1
