@@ -16,7 +16,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
     echo "Do you want to install oh-my-zsh ? (y/n):"
     read ANSWER
 
-    if [ ${ANSWER} = "Y" or ${ANSWER} = "y" or ${ANSWER} = "yes" ]; then
+    if [ ${ANSWER} = "y" ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
 fi
