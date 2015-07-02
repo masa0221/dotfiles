@@ -52,9 +52,7 @@ brew cask install skype
 brew cask install firefox-ja
 brew cask install bettertouchtool
 brew cask install skitch
-brew cask install mou
 brew cask install filezilla
-brew cask install openoffice
 brew cask install intellij-idea-ce
 
 
