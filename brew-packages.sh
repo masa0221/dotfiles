@@ -43,6 +43,8 @@ brew install readline
 brew install apple-gcc42
 
 # Install cask-packages
+# brew cask option 
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 brew cask install virtualbox
 brew cask install vagrant
 brew cask install iterm2
