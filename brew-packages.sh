@@ -5,14 +5,9 @@ brew update
 brew upgrade
 
 # Add repositories
-brew tap caskroom/cask
-brew tap caskroom/homebrew-versions
 brew tap peco/peco
 brew tap homebrew/dupes
 brew tap homebrew/versions
-
-# Install brew-cask
-brew install brew-cask
 
 # Install brew-packages
 brew install ansible
@@ -41,22 +36,6 @@ brew install rbenv-gem-rehash
 brew install rbenv-default-gems
 brew install readline
 brew install apple-gcc42
-
-# Install cask-packages
-# brew cask option 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-brew cask install virtualbox
-brew cask install vagrant
-brew cask install iterm2
-brew cask install google-chrome
-brew cask install google-drive
-brew cask install skype
-brew cask install firefox-ja
-brew cask install bettertouchtool
-brew cask install skitch
-brew cask install filezilla
-brew cask install intellij-idea-ce
-
 
 # Remove outdated version
 brew cleanup
