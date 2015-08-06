@@ -14,11 +14,20 @@ if [ -d $HOME/.nodebrew ]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
+# haskell
+if [ -d $HOME/Library/Haskell/bin ]; then 
+    export PATH=$HOME/Library/Haskell/bin:$PATH
+fi
+
+
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
 # color setting
 export TERM=xterm-256color
+
+# Java options ( used by mvn ) 
+export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 
 ########################################
 # oh my zsh
