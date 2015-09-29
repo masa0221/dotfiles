@@ -60,6 +60,9 @@ NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundle 'Align' " SQLUtilitiesで必要
 
+" Yaml
+NeoBundle 'mrk21/yaml-vim'
+
 call neobundle#end()
 
  " If there are uninstalled bundles found on startup,
@@ -167,6 +170,7 @@ autocmd BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 " インデントを設定
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 autocmd FileType html setlocal sw=2 sts=2 ts=2 et
+autocmd FileType css setlocal sw=2 sts=2 ts=2 et
 
 " PHP
 if filereadable(expand('~/.vim/dictionaries/php.dict'))
