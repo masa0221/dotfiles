@@ -66,6 +66,20 @@ call neobundle#end()
  " this will conveniently prompt you to install them.
 NeoBundleCheck
 
+
+" -------------------------------------------
+" neocomplcache
+" -------------------------------------------
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_manual_completion_start_length = 0
+let g:neocomplcache_caching_percent_in_statusline = 1
+let g:neocomplcache_enable_skip_completion = 1
+let g:neocomplcache_skip_input_time = '0.5'
+
 " -------------------------------------------
 " 外部ファイルの読み込み
 " -------------------------------------------
@@ -153,6 +167,11 @@ autocmd BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 " インデントを設定
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 autocmd FileType html setlocal sw=2 sts=2 ts=2 et
+
+" PHP
+if filereadable(expand('~/.vim/dictionaries/php.dict'))
+    autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
+endif
 
 " SQLUtilities
 let g:sqlutil_align_comma = 1
