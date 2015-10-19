@@ -145,7 +145,7 @@ alias sudo='sudo '
 
 # vim をpeco で開く
 function peco-dir-open-app () {
-    find . | peco | xargs sh -c 'vim "$0" < /dev/tty'
+    find . | grep -v .git | peco | xargs sh -c 'vim "$0" < /dev/tty'
     zle clear-screen
 }
 zle -N peco-dir-open-app
