@@ -14,6 +14,11 @@ if [ -d $HOME/.nodebrew ]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
+# haskell
+if [ -d $HOME/Library/Haskell/bin ]; then 
+    export PATH=$HOME/Library/Haskell/bin:$PATH
+fi
+
 # The next line updates PATH for the Google Cloud SDK.
 # source '/Users/masa0221/google-cloud-sdk/path.zsh.inc'
 if [ -f "~/google-cloud-sdk/path.zsh.inc" ]; then
@@ -31,6 +36,9 @@ export MYSQL_PS1='\u@\h[\d] > '
 
 # color setting
 export TERM=xterm-256color
+
+# Java options ( used by mvn ) 
+export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 
 ########################################
 # oh my zsh
