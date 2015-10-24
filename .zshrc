@@ -14,6 +14,18 @@ if [ -d $HOME/.nodebrew ]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
+# The next line updates PATH for the Google Cloud SDK.
+# source '/Users/masa0221/google-cloud-sdk/path.zsh.inc'
+if [ -f "~/google-cloud-sdk/path.zsh.inc" ]; then
+    source "~/google-cloud-sdk/path.zsh.inc"
+fi
+
+# The next line enables shell command completion for gcloud.
+# source '/Users/masa0221/google-cloud-sdk/completion.zsh.inc'
+if [ -f "~/google-cloud-sdk/completion.zsh.inc" ]; then
+    source "~/google-cloud-sdk/completion.zsh.inc"
+fi
+
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
