@@ -19,16 +19,6 @@ if [ -d $HOME/Library/Haskell/bin ]; then
     export PATH=$HOME/Library/Haskell/bin:$PATH
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then
-    source $HOME/google-cloud-sdk/path.zsh.inc
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
-    source $HOME/google-cloud-sdk/completion.zsh.inc
-fi
-
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
@@ -49,6 +39,21 @@ source $ZSH/oh-my-zsh.sh
 
 # 右の時間だけいらないから上書き
 RPROMPT=''
+
+########################################
+# google cloud sdk
+########################################
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then
+    source $HOME/google-cloud-sdk/path.zsh.inc
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
+    source $HOME/google-cloud-sdk/completion.zsh.inc
+fi
+
 
 ########################################
 # 単語設定/補完
