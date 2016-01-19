@@ -63,6 +63,9 @@ NeoBundle 'Align' " SQLUtilitiesで必要
 " Yaml
 NeoBundle 'mrk21/yaml-vim'
 
+" twig
+NeoBundle 'evidens/vim-twig'
+
 call neobundle#end()
 
  " If there are uninstalled bundles found on startup,
