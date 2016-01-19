@@ -148,7 +148,6 @@ alias mv='mv -i'
 alias mkdir='mkdir -p'
 
 alias vi='vim'
-alias j='autojump'
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
