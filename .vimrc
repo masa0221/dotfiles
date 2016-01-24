@@ -60,6 +60,9 @@ NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundle 'Align' " SQLUtilitiesで必要
 
+" html
+NeoBundle 'mattn/emmet-vim'
+
 " Yaml
 NeoBundle 'mrk21/yaml-vim'
 
