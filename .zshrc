@@ -19,6 +19,11 @@ if [ -d $HOME/Library/Haskell/bin ]; then
     export PATH=$HOME/Library/Haskell/bin:$PATH
 fi
 
+# pyenv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
