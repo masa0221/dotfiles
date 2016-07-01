@@ -9,6 +9,7 @@ brew tap peco/peco
 brew tap homebrew/dupes
 
 # Install brew-packages
+brew install zsh
 brew install ansible
 brew install autojump
 brew install git-flow
