@@ -8,7 +8,7 @@ done
 
 if [ ! -d ~/.vim/bundle ]; then
     \mkdir -p ~/.vim/bundle
-    git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+    git clone git://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
     vim -c ':NeoBundleInstall'
 fi
 
@@ -17,6 +17,6 @@ if [ ! -d ~/.oh-my-zsh ]; then
     read ANSWER
 
     if [ ${ANSWER} = "y" ]; then
-        git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+        git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
     fi
 fi
