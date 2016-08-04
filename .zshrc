@@ -29,6 +29,12 @@ export RBENV_ROOT=$HOME/.rbenv
 export PATH=$RBENV_ROOT/bin:$PATH
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# phpbrew
+if which phpbrew > /dev/null; then
+    source /Users/cw-tsuru/.phpbrew/bashrc
+    export PHPBREW_SET_PROMPT=1
+fi
+
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
