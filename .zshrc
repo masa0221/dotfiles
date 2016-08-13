@@ -35,6 +35,9 @@ if which phpbrew > /dev/null; then
     export PHPBREW_SET_PROMPT=1
 fi
 
+# direnv
+if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
