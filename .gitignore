@@ -3,4 +3,5 @@
 *.swp
 *tags
 *.swo
-.idea
+*.idea
+*.iml
