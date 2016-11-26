@@ -10,6 +10,7 @@ brew tap homebrew/dupes
 
 # Install brew-packages
 brew install zsh
+brew install antigen
 brew install ansible
 brew install autojump
 brew install git-flow

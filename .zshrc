@@ -48,16 +48,14 @@ export TERM=xterm-256color
 export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 
 ########################################
-# oh my zsh
+# antigen
 ########################################
-ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="pmcgee"
-
-plugins=(brew git git-flow sublime vagrant autojump composer ruby rbenv gem npm node tmux aws)
-source $ZSH/oh-my-zsh.sh
-
-# 右の時間だけいらないから上書き
-RPROMPT=''
+if [ -f $(brew --prefix)/share/antigen/antigen.zsh ]; then
+    source $(brew --prefix)/share/antigen/antigen.zsh
+fi
+if [ -f $HOME/.dotfiles/.zshrc.antigen ]; then
+    source $HOME/.dotfiles/.zshrc.antigen
+fi
 
 ########################################
 # google cloud sdk
