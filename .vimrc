@@ -96,6 +96,10 @@ if filereadable(expand('~/.vim/dictionaries/php.dict'))
     autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
 endif
 
+" Go lang
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
+
 " SQLUtilities
 let g:sqlutil_align_comma = 1
 vmap <silent>sf        <Plug>SQLU_Formatter<CR>
