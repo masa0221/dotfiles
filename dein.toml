@@ -4,9 +4,17 @@ repo = 'Shougo/dein.vim' # Required
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 [[plugins]]
+repo = 'Shougo/neocomplete'
+[[plugins]]
+repo = 'Shougo/neosnippet'
+[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 [[plugins]]
-repo = 'Shougo/neocomplcache'
+repo = 'honza/vim-snippets'
+[[plugins]]
+repo = 'Shougo/vimshell'
+[[plugins]]
+repo = 'Shougo/neco-vim'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 [[plugins]]
