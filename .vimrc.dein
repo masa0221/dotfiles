@@ -1,0 +1,25 @@
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_toml = expand('<sfile>:p:h').'/dein.toml'
+
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+let &runtimepath = &runtimepath .",". s:dein_dir.'/repos/github.com/Shougo/dein.vim'
+
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
+    call dein#load_toml(s:dein_toml)
+    call dein#end()
+    call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
