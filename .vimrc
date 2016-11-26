@@ -111,6 +111,9 @@ nmap <silent>scp       <Plug>SQLU_CreateProcedure<CR>
 " -------------------------------------------
 " neocomplete
 " -------------------------------------------
+highlight Pmenu ctermbg=17
+highlight PmenuSel ctermbg=24
+highlight PMenuSbar ctermbg=32
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
