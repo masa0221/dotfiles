@@ -99,6 +99,13 @@ endif
 " Go lang
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
+inoremap <silent> <CR> <CR><c-o>:pclose<CR>
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " SQLUtilities
 let g:sqlutil_align_comma = 1
