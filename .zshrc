@@ -60,8 +60,8 @@ export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 ########################################
 # antigen
 ########################################
-if [ -f $(brew --prefix)/share/antigen/antigen.zsh ]; then
-    source $(brew --prefix)/share/antigen/antigen.zsh
+if [ -f $(brew --prefix)/share/antigen.zsh ]; then
+    source $(brew --prefix)/share/antigen.zsh
 fi
 if [ -f $HOME/.dotfiles/.zshrc.antigen ]; then
     source $HOME/.dotfiles/.zshrc.antigen
