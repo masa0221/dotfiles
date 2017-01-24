@@ -41,7 +41,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # phpbrew
 if which phpbrew > /dev/null; then
-    source /Users/cw-tsuru/.phpbrew/bashrc
+    source $HOME/.phpbrew/bashrc
     export PHPBREW_SET_PROMPT=1
 fi
 
