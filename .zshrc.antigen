@@ -7,6 +7,7 @@ antigen theme pmcgee
 # Bundles from the default repo.
 antigen bundle git
 antigen bundle git-flow
+antigen bundle knu/zsh-git-escape-magic
 antigen bundle sublime
 antigen bundle vagrant
 antigen bundle autojump
