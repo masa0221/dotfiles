@@ -5,3 +5,4 @@
 *.swo
 *.idea
 *.iml
+.php_cs.cache
