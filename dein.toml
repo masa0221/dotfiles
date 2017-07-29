@@ -59,6 +59,8 @@ repo = 'tyru/open-browser.vim'
 # scala
 [[plugins]]
 repo = 'derekwyatt/vim-scala'
+[[plugins]]
+repo = 'vim-scripts/JavaDecompiler.vim'
 
 # haskell
 [[plugins]]
