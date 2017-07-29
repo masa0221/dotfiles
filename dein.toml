@@ -68,15 +68,23 @@ repo = 'ujihisa/neco-ghc'
 [[plugins]]
 repo = 'fatih/vim-go'
 
+# PHP
+[[plugins]]
+repo = 'joonty/vdebug'
+
 # SQL
 [[plugins]]
 repo = 'vim-scripts/SQLUtilities'
 [[plugins]]
-repo = 'Align' # SQLUtilitiesで必要
+repo = 'vim-scripts/Align' # SQLUtilitiesで必要
 
 # HTML
 [[plugins]]
 repo = 'mattn/emmet-vim'
+
+# TypeScript
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
 
 # Yaml
 [[plugins]]
