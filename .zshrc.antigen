@@ -15,7 +15,6 @@ antigen bundle composer
 antigen bundle ruby
 antigen bundle rbenv
 antigen bundle gem
-antigen bundle npm
 antigen bundle node
 antigen bundle tmux
 antigen bundle aws
