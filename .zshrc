@@ -3,12 +3,6 @@
 ########################################
 export LANG=ja_JP.UTF-8
 
-# brew で入るパッケージを優先
-export PATH=/usr/local/bin:$PATH
-
-# brew cask option 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
 # nodebrew
 if [ -d $HOME/.nodebrew ]; then 
     export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -56,6 +50,14 @@ export TERM=xterm-256color
 
 # Java options ( used by mvn ) 
 export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
+
+# Homebrew
+if which brew > /dev/null; then
+    # brew cask option
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+    # brew で入るパッケージを優先
+    export PATH=$(brew --prefix)/bin:$PATH
+fi
 
 ########################################
 # antigen
