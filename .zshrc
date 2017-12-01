@@ -187,14 +187,6 @@ alias sudo='sudo '
 # peco
 ########################################
 
-# vim をpeco で開く
-function peco-dir-open-app () {
-    find . | grep -v .git | peco | xargs sh -c 'vim "$0" < /dev/tty'
-    zle clear-screen
-}
-zle -N peco-dir-open-app
-bindkey '^v^r' peco-dir-open-app     # C-v C-r
-
 # historyをpecoでanyting search
 function peco-select-history() {
     local tac
@@ -212,6 +204,21 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history # C-r
 
+# vim をpeco で開く
+function peco-dir-open-app () {
+    find . | grep -v .git | peco | xargs sh -c 'vim "$0" < /dev/tty'
+    zle clear-screen
+}
+zle -N peco-dir-open-app
+bindkey '^v^r' peco-dir-open-app     # C-v C-r
+
+# git checkout をpeco 経由で実行
+function peco-git-checkout () {
+    git branch | peco | xargs git checkout
+    zle accept-line
+}
+zle -N peco-git-checkout
+bindkey '^g^r' peco-git-checkout    # C-g C-r
 
 ########################################
 # tmux の起動
