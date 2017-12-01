@@ -216,7 +216,7 @@ bindkey '^v^r' peco-dir-open-app     # C-v C-r
 
 # git checkout をpeco 経由で実行
 function peco-git-checkout () {
-    git branch | peco | xargs git checkout
+    git branch | peco | sed -E 's/(\*| )//g' | xargs git checkout
     zle accept-line
 }
 zle -N peco-git-checkout
