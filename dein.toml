@@ -99,3 +99,8 @@ repo = 'cespare/vim-toml'
 # twig
 [[plugins]]
 repo = 'evidens/vim-twig'
+
+# terraform
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+repo = 'juliosueiras/vim-terraform-completion'
