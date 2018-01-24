@@ -65,6 +65,10 @@ fi
 if [ -f $(brew --prefix)/share/antigen.zsh ]; then
     source $(brew --prefix)/share/antigen.zsh
 fi
+# ディレクトリが違う場合があるので
+if [ -f $(brew --prefix)/share/antigen/antigen.zsh ]; then
+    source $(brew --prefix)/share/antigen/antigen.zsh
+fi
 if [ -f $HOME/.dotfiles/.zshrc.antigen ]; then
     source $HOME/.dotfiles/.zshrc.antigen
 fi
