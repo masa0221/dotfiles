@@ -10,7 +10,7 @@ brew tap homebrew/dupes
 
 # Install brew-packages
 brew install zsh
-brew install antigen
+brew install zplug
 brew install ansible
 brew install autojump
 brew install git-flow
@@ -23,7 +23,6 @@ brew install vim
 brew install wget
 brew install tmux
 brew install awscli
-brew install reattach-to-user-namespace
 brew install ctags
 brew install mysql
 
