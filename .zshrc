@@ -59,18 +59,16 @@ if which brew > /dev/null; then
     export PATH=$(brew --prefix)/bin:$PATH
 fi
 
+# history
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
+
 ########################################
-# antigen
+# zplug
 ########################################
-if [ -f $(brew --prefix)/share/antigen.zsh ]; then
-    source $(brew --prefix)/share/antigen.zsh
-fi
-# ディレクトリが違う場合があるので
-if [ -f $(brew --prefix)/share/antigen/antigen.zsh ]; then
-    source $(brew --prefix)/share/antigen/antigen.zsh
-fi
-if [ -f $HOME/.dotfiles/.zshrc.antigen ]; then
-    source $HOME/.dotfiles/.zshrc.antigen
+if [ -f $HOME/.dotfiles/.zshrc.zplug ]; then
+    source $HOME/.dotfiles/.zshrc.zplug
 fi
 
 ########################################
@@ -103,6 +101,9 @@ zstyle ':zle:*' word-style unspecified
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
+
+# 色設定
+zstyle ':completion:*' list-colors ${LSCOLORS}
 
 # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -174,9 +175,12 @@ setopt extended_glob
 ########################################
 # エイリアス
 ########################################
-
+alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -l'
+alias l='ls -la'
+
+alias grep='grep --color=auto'
 
 alias rm='rm -i'
 alias cp='cp -i'
