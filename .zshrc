@@ -1,3 +1,7 @@
+if [ ! -e $HOME/.zshrc.zwc -o $HOME/.zshrc -nt $HOME/.zshrc.zwc ]; then
+  zcompile ~/.zshrc
+fi
+
 ########################################
 # 環境変数
 ########################################
