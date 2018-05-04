@@ -22,23 +22,6 @@ if which go > /dev/null; then
     export PATH=$PATH:$GOPATH/bin
 fi
 
-
-# pyenv
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# rbenv
-export RBENV_ROOT=$HOME/.rbenv
-export PATH=$RBENV_ROOT/bin:$PATH
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# phpbrew
-if which phpbrew > /dev/null; then
-    source $HOME/.phpbrew/bashrc
-    export PHPBREW_SET_PROMPT=1
-fi
-
 # direnv
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 

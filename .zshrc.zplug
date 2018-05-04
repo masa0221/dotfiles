@@ -16,13 +16,5 @@ zplug "knu/zsh-git-escape-magic", lazy:true
 # テーマファイルを読み込む
 zplug "themes/pmcgee", from:oh-my-zsh, hook-load:"RPROMPT=''"
 
-# 未インストール項目をインストールする
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
 zplug load
