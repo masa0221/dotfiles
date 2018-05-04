@@ -6,11 +6,10 @@ fi
 
 source $ZPLUG_HOME/init.zsh
 
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-zplug "plugins/autojump", from:oh-my-zsh, lazy:true
+zplug "zplug/zplug", hook-build:"zplug --self-manage", lazy:true
+zplug "plugins/autojump", from:oh-my-zsh, defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/fizsh", defer:2
-zplug "zsh-users/zsh-completions", defer:2
+zplug "zsh-users/zsh-completions", lazy:true
 zplug "tarruda/zsh-autosuggestions", defer:2
 zplug "knu/zsh-git-escape-magic", lazy:true
 
