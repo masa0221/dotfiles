@@ -82,8 +82,7 @@ zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
 # 補完機能を有効にする
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit -c
 
 # 色設定
 zstyle ':completion:*' list-colors ${LSCOLORS}
