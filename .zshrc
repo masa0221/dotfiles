@@ -203,13 +203,12 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history # C-r
 
-# vim をpeco で開く
-function peco-dir-open-app () {
-    find . | grep -v .git | peco | xargs sh -c 'vim "$0" < /dev/tty'
-    zle clear-screen
+# vim をfzf で開く
+function fzf-open-file-on-vim () {
+    find . | fzf --preview 'head -100 {}' | xargs sh -c 'vim "$0" < /dev/tty'
 }
-zle -N peco-dir-open-app
-bindkey '^v^r' peco-dir-open-app     # C-v C-r
+zle -N fzf-open-file-on-vim
+bindkey '^v^r' fzf-open-file-on-vim     # C-v C-r
 
 # git checkout をpeco 経由で実行
 function peco-git-checkout () {
