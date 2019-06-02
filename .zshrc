@@ -6,6 +6,10 @@ fi
 # 環境変数
 ########################################
 export LANG=ja_JP.UTF-8
+# composer
+if [ -d $HOME/.composer ]; then 
+    export PATH=$HOME/.composer/vendor/bin:$PATH
+fi
 
 # nodebrew
 if [ -d $HOME/.nodebrew ]; then 
