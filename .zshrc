@@ -23,10 +23,10 @@ fi
 
 # Golang
 if which go > /dev/null; then
-    if [ ! -d $HOME/.go ]; then
-        mkdir $HOME/.go
+    if [ ! -d $HOME/go ]; then
+        mkdir $HOME/go
     fi
-    export GOPATH=$HOME/.go
+    export GOPATH=$HOME/go
     export PATH=$PATH:$GOPATH/bin
 fi
 
