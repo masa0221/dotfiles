@@ -112,6 +112,9 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 autoload -Uz git-escape-magic
 git-escape-magic
 
+# kubernetes
+if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+
 
 ########################################
 # オプション
