@@ -108,6 +108,7 @@ let g:NERDTreeDirArrows=0
 "let g:NERDTreeDirArrows=1
 
 "マウス操作方法
+set mouse=a
 "NERDTreeMouseMode
 "Values: 1, 2 or 3.
 "Default: 1.
@@ -115,8 +116,8 @@ let g:NERDTreeDirArrows=0
 "2 : ディレクトリのみシングルクリックで開く。
 "3 : ファイル、ディレクトリ両方共シングルクリックで開く。
 "let g:NERDTreeMouseMode=1
-let g:NERDTreeMouseMode=2
-"let g:NERDTreeMouseMode=3
+"let g:NERDTreeMouseMode=2
+let g:NERDTreeMouseMode=3
 
 "NERDTreeBookmarksFile
 "ブックマークを記録したファイルの設置場所を指定。
