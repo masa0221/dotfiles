@@ -25,6 +25,7 @@ brew install tmux
 brew install awscli
 brew install ctags
 brew install mysql
+brew install reattach-to-user-namespace
 
 # Remove outdated version
 brew cleanup
