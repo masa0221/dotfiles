@@ -16,6 +16,10 @@ if [ -d $HOME/.nodebrew ]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
+if which anyenv > /dev/null; then
+    eval "$(anyenv init -)"
+fi
+
 # haskell
 if [ -d $HOME/Library/Haskell/bin ]; then 
     export PATH=$HOME/Library/Haskell/bin:$PATH
