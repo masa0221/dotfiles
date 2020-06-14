@@ -29,3 +29,6 @@ brew install reattach-to-user-namespace
 
 # Remove outdated version
 brew cleanup
+
+# Install zplug plugins
+zplug install
