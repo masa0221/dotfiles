@@ -28,6 +28,7 @@ brew install mysql
 brew install reattach-to-user-namespace
 brew install anyenv
 brew install fzf
+brew install jq
 
 # Remove outdated version
 brew cleanup
