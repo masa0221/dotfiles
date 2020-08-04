@@ -29,6 +29,7 @@ brew install reattach-to-user-namespace
 brew install anyenv
 brew install fzf
 brew install jq
+brew install kube-ps1
 
 # Remove outdated version
 brew cleanup

@@ -118,7 +118,14 @@ git-escape-magic
 
 # kubernetes
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
-
+() {
+  local kubeps1_sh="$(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh"
+  if [[ -f "$kubeps1_sh" ]]; then
+      source $kubeps1_sh
+      PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%} %{$fg[white]%}%B${PWD/#$HOME/~}%b%{$reset_color%} %B$(kube_ps1)%b%{$reset_color%}
+$(git_prompt_info)%(!.#.$) '
+  fi
+}
 
 ########################################
 # オプション
