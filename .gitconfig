@@ -20,6 +20,7 @@
     rm-all = !"git rm $(git ls-files --delete)"
     fc = fetch -p
     alias = !"git config --list | grep alias | sed -e 's/^alias.//g'"
+    delete-merged-branches= !"git branch --merged | grep -vE '\*|develop | xargs git branch -d'"
 
 [include]
     path = ~/.gitconfig-user
