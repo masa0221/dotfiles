@@ -16,8 +16,13 @@ if [ -d $HOME/.nodebrew ]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
+# anyenv
 if which anyenv > /dev/null; then
-    eval "$(anyenv init -)"
+    if ! [ -f /tmp/anyenv.cache ]; then
+        anyenv init - --no-rehash > /tmp/anyenv.cache
+        zcompile /tmp/anyenv.cache
+    fi
+    source /tmp/anyenv.cache
 fi
 
 # haskell
@@ -35,7 +40,13 @@ if which go > /dev/null; then
 fi
 
 # direnv
-if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+if which dotenv > /dev/null; then
+    if ! [ -f /tmp/dotenv.cache ]; then
+        dotenv init - --no-rehash > /tmp/dotenv.cache
+        zcompile /tmp/dotenv.cache
+    fi
+    source /tmp/dotenv.cache
+fi
 
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
@@ -80,7 +91,6 @@ if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
     source $HOME/google-cloud-sdk/completion.zsh.inc
 fi
 
-
 ########################################
 # 単語設定/補完
 ########################################
@@ -117,7 +127,13 @@ autoload -Uz git-escape-magic
 git-escape-magic
 
 # kubernetes
-if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+kubectl() {
+  if [ $commands[kubectl] ]; then 
+      unfunction "$0"
+      source <(kubectl completion zsh)
+      $0 "$@"
+  fi
+}
 () {
   local kubeps1_sh="$(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh"
   if [[ -f "$kubeps1_sh" ]]; then
