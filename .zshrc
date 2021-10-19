@@ -73,8 +73,8 @@ SAVEHIST=10000
 ########################################
 # zplug
 ########################################
-if [ -f $HOME/.dotfiles/.zshrc.zplug ]; then
-    source $HOME/.dotfiles/.zshrc.zplug
+if [ -f $HOME/dotfiles/.zshrc.zplug ]; then
+    source $HOME/dotfiles/.zshrc.zplug
 fi
 
 ########################################

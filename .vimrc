@@ -1,15 +1,15 @@
 " -------------------------------------------
 " 外部ファイルの読み込み
 " -------------------------------------------
-if filereadable(expand('~/.dotfiles/.vimrc.dein'))
-    source ~/.dotfiles/.vimrc.dein
+if filereadable(expand('~/dotfiles/.vimrc.dein'))
+    source ~/dotfiles/.vimrc.dein
 endif
-if filereadable(expand('~/.dotfiles/.vimrc.NERDTree'))
-    source ~/.dotfiles/.vimrc.NERDTree
+if filereadable(expand('~/dotfiles/.vimrc.NERDTree'))
+    source ~/dotfiles/.vimrc.NERDTree
 endif
 
-if filereadable(expand('~/.dotfiles/.vimrc.unite'))
-    source ~/.dotfiles/.vimrc.unite
+if filereadable(expand('~/dotfiles/.vimrc.unite'))
+    source ~/dotfiles/.vimrc.unite
 endif
 
 " -------------------------------------------
