@@ -2,17 +2,15 @@
 
 DOT_FILES=(.zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc)
 for DOT_FILE in ${DOT_FILES[@]}; do 
-    ln -s -f ${HOME}/dotfiles/${DOT_FILE} ${HOME}/${DOT_FILE}
+  ln -s -f ${HOME}/dotfiles/${DOT_FILE} ${HOME}/${DOT_FILE}
 done
 
-DEIN_DIR=${HOME}/.vim/dein
-if [ ! -d ${DEIN_DIR} ]; then
-    echo "Do you want to install Dein(vim plugin manager) ? (y/n):"
-    read ANSWER
-
-    if [ ${ANSWER} = "y" ]; then
-        DEIN_PLUGIN_PATH=${DEIN_DIR}/repos/github.com/Shougo/dein.vim
-        mkdir -p ${DEIN_PLUGIN_PATH}
-        git clone https://github.com/Shougo/dein.vim ${DEIN_PLUGIN_PATH}
-    fi
+VIMPLUG_INATALL_PATH=${HOME}/.vim/autoload/plug.vim
+if [ ! -f ${VIMPLUG_INATALL_PATH} ]; then
+  read -p "Are you sure install vim-plug? [y/n]: " INSTALL_VIMPLUG
+  case "${INSTALL_VIMPLUG}" in
+  [nN]) exit 1 ;;
+  esac
+    curl -fLo ${VIMPLUG_INATALL_PATH} --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
