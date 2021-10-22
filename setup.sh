@@ -50,12 +50,12 @@ function install_vim_plugin() {
     return 0
   fi
 
-  read -p "Are you sure install VIM plugins by vim-plug? [y/n]: " INSTALL_VIMPLUG_PLUGIN
+  read -p "Are you sure install Vim plugins by vim-plug? [y/n]: " INSTALL_VIMPLUG_PLUGIN
   case "${INSTALL_VIMPLUG_PLUGIN}" in
     [nN]) exit 1 ;;
     [yY]) 
-      vim -c 'PlugStatus | PlugUpdate | PlugClean | PlugInstall | quit | quit'
-      echo "VIM plugins was installed."
+      vim -c 'let g:plug_window="" | PlugStatus | PlugClean | PlugUpdate | PlugInstall | quit'
+      echo "Vim plugins was installed."
   esac
 }
 
@@ -75,7 +75,7 @@ EOT
 display_message "dotfiles settings"
 put_dot_files
 
-display_message "VIM settings"
+display_message "Vim settings"
 install_vim_plug
 install_vim_plugin
 
