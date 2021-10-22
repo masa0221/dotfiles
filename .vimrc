@@ -43,13 +43,14 @@ call plug#begin('~/.vim/plugged')
 
   " ステータスライン表示
   Plug 'itchyny/lightline.vim'
-  " gitのブランチ表示をlightlineで利用する用
+
+  " gitのブランチ表示をステータスラインで利用する用
   Plug 'itchyny/vim-gitbranch'
 
   " 行番号の左にgitの差分を表示
   Plug 'airblade/vim-gitgutter'
 
-  " 
+  " git操作系
   Plug 'tpope/vim-fugitive'
 
   " カラースキーム
