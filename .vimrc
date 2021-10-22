@@ -1,152 +1,126 @@
-" -------------------------------------------
-" 外部ファイルの読み込み
-" -------------------------------------------
-if filereadable(expand('~/.dotfiles/.vimrc.dein'))
-    source ~/.dotfiles/.vimrc.dein
-endif
-if filereadable(expand('~/.dotfiles/.vimrc.NERDTree'))
-    source ~/.dotfiles/.vimrc.NERDTree
-endif
+" --------------------------------------------------
+" 表示設定
+" --------------------------------------------------
+" 行番号の表示
+set number
 
-if filereadable(expand('~/.dotfiles/.vimrc.unite'))
-    source ~/.dotfiles/.vimrc.unite
-endif
-
-" -------------------------------------------
-" 色設定
-" ------------------------------------------
-syntax on
-set background=dark
-colorscheme molokai
-let g:rehash256 = 1
-let g:molokai_original = 1
-highlight Normal ctermbg=none
-highlight LineNr ctermbg=none
-" highlight SignColumn ctermbg=none
-" highlight VertSplit ctermbg=none
-" highlight NonText ctermbg=none
-highlight Comment       ctermfg=50  " コメント
-highlight Delimiter     ctermfg=262 " 括弧(キモいからあとで調整
-
-" -------------------------------------------
-" 一般設定
-" ------------------------------------------
-filetype plugin indent on     " required!
-
-set nu " 行番号
-set hlsearch
-
-" statusline
-set laststatus=2
-
-let g:lightline = {
-      \ 'active': {
-      \     'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component': {
-      \     'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \     'readonly': '(&filetype!="help"&& &readonly)',
-      \     'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \     'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ }
-      \ }
-
-" 空白文字とかの設定
-set list
-set backspace=2
-
-" tabの設定
-set autoindent
-set listchars=eol:¶,tab:▸\ 
-" set noexpandtab " タブ文字の挿入
-set expandtab " ソフトタブ
-set shiftwidth=4
-set softtabstop=0
-set tabstop=4
-
-" ビジュアルモード選択でclipboardコピー出来るように
-set clipboard=unnamed,autoselect
-
-" 行を強調表示
+" 行番号の強調表示
 set cursorline
 
-" vim-tags
-autocmd BufNewFile,BufRead *.php let g:vim_tags_project_tags_command = "ctags --languages=php -f ~/php.tags `pwd` 2>/dev/null &"
+" タブや行末などの表示設定
+set list
+set listchars=tab:▸\ ,eol:↵,trail:.,extends:…,precedes:…
 
-" vimにmdファイルタイプを認識させる
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-" 開いた状態にする
-" let g:vim_markdown_initial_foldlevel=3
-set nofoldenable
+" --------------------------------------------------
+" インデント設定
+" --------------------------------------------------
+" <Tab>の文字で表示されるスペースの数
+set tabstop=2
 
-" vimにcoffeeファイルタイプを認識させる
-autocmd BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+" ソフトタブにする
+set expandtab
 
-" インデントを設定
-autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-autocmd FileType html setlocal sw=2 sts=2 ts=2 et
-autocmd FileType css setlocal sw=2 sts=2 ts=2 et
-autocmd FileType twig setlocal sw=2 sts=2 ts=2 et
+" ソフトタブの幅として使用されるスペースの数
+set softtabstop=2
 
-" PHP
-if filereadable(expand('~/.vim/dictionaries/php.dict'))
-    autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionaries/php.dict filetype=php
+" インデントに使われるスペースの数
+set shiftwidth=2
+
+
+" --------------------------------------------------
+" 検索
+" --------------------------------------------------
+" 検索のハイライトを有効
+set hlsearch
+
+" 検索前にハイライト
+set incsearch
+
+" 大文字小文字を区別しない
+set ignorecase
+
+" 大文字が含まれていたらignorecaseを上書き
+set smartcase
+
+
+" --------------------------------------------------
+" 未分類
+" --------------------------------------------------
+"  通知音をすべてOFFにする
+set belloff=all
+
+" バッファ変更後バッファ移動で警告が出ないように
+set hidden
+
+
+" --------------------------------------------------
+" vim-plug の設定
+" --------------------------------------------------
+" 下に表示
+let g:plug_window = 'belowright 10new'
+
+call plug#begin('~/.vim/plugged')
+  " Vim日本語マニュアル
+  Plug 'https://github.com/vim-jp/vimdoc-ja.git'
+
+  " ステータスライン表示
+  Plug 'itchyny/lightline.vim'
+
+  " gitのブランチ表示をステータスラインで利用する用
+  Plug 'itchyny/vim-gitbranch'
+
+  " 行番号の左にgitの差分を表示
+  Plug 'airblade/vim-gitgutter'
+
+  " git操作系
+  Plug 'tpope/vim-fugitive'
+
+  " カラースキーム
+  Plug 'sainnhe/sonokai'
+call plug#end()
+
+
+" --------------------------------------------------
+" カラースキーム
+" --------------------------------------------------
+if has('termguicolors')
+  set termguicolors
 endif
+" The configuration options should be placed before `colorscheme sonokai`
+let g:sonokai_style = 'maia'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
 
-" Go lang
-autocmd FileType go :highlight goErr cterm=bold ctermfg=214
-autocmd FileType go :match goErr /\<err\>/
-inoremap <silent> <CR> <CR><c-o>:pclose<CR>
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
 
-" SQLUtilities
-let g:sqlutil_align_comma = 1
-vmap <silent>sf        <Plug>SQLU_Formatter<CR>
-nmap <silent>scl       <Plug>SQLU_CreateColumnList<CR>
-nmap <silent>scd       <Plug>SQLU_GetColumnDef<CR>
-nmap <silent>scdt      <Plug>SQLU_GetColumnDataType<CR>
-nmap <silent>scp       <Plug>SQLU_CreateProcedure<CR>
+" --------------------------------------------------
+" ステータスラインの設定
+" --------------------------------------------------
+" ステータスラインを常に表示
+set laststatus=2
 
-" -------------------------------------------
-" neocomplete
-" -------------------------------------------
-highlight Pmenu ctermbg=17
-highlight PmenuSel ctermbg=24
-highlight PMenuSbar ctermbg=32
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
+" lightlineの設定
+let g:lightline = {
+      \ 'colorscheme': 'sonokai',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
 
-" -------------------------------------------
-" neosnippet
-" -------------------------------------------
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" --------------------------------------------------
+" Git関係
+" --------------------------------------------------
+" 差分表示を100msに変更(vim-gitgutter)
+set updatetime=100
 
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
+" 変更内容の色設定(左にgitの差分を表示)
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+highlight SignColumn ctermbg=none
 
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/dein/vim-snippets/snippets'
