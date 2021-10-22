@@ -32,6 +32,45 @@ set shiftwidth=2
 
 
 " --------------------------------------------------
+" vim-plug の設定
+" --------------------------------------------------
+" 下に表示
+let g:plug_window = 'belowright 10new'
+
+call plug#begin('~/.vim/plugged')
+  " Vim日本語マニュアル
+  Plug 'https://github.com/vim-jp/vimdoc-ja.git'
+
+  " ステータスライン表示
+  Plug 'itchyny/lightline.vim'
+  " gitのブランチ表示をlightlineで利用する用
+  Plug 'itchyny/vim-gitbranch'
+
+  " 行番号の左にgitの差分を表示
+  Plug 'airblade/vim-gitgutter'
+
+  " 
+  Plug 'tpope/vim-fugitive'
+
+  " カラースキーム
+  Plug 'sainnhe/sonokai'
+call plug#end()
+
+
+" --------------------------------------------------
+" カラースキーム
+" --------------------------------------------------
+if has('termguicolors')
+  set termguicolors
+endif
+" The configuration options should be placed before `colorscheme sonokai`
+let g:sonokai_style = 'maia'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
+
+
+" --------------------------------------------------
 " ステータスラインの設定
 " --------------------------------------------------
 " ステータスラインを常に表示
@@ -39,6 +78,7 @@ set laststatus=2
 
 " lightlineの設定
 let g:lightline = {
+      \ 'colorscheme': 'sonokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -60,24 +100,4 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 highlight SignColumn ctermbg=none
-
-
-" --------------------------------------------------
-" vim-plug の設定
-" --------------------------------------------------
-" 下に表示
-let g:plug_window = 'belowright 10new'
-
-call plug#begin('~/.vim/plugged')
-  " Vim日本語マニュアル
-  Plug 'https://github.com/vim-jp/vimdoc-ja.git'
-
-  " ステータスライン表示
-  Plug 'itchyny/lightline.vim'
-  " gitのブランチ表示をlightlineで利用する用
-  Plug 'itchyny/vim-gitbranch'
-
-  " 行番号の左にgitの差分を表示
-  Plug 'airblade/vim-gitgutter'
-call plug#end()
 
