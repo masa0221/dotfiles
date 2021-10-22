@@ -9,7 +9,7 @@ set cursorline
 
 " タブや行末などの表示設定
 set list
-set listchars=tab:▸\ ,eol:↵,trail:.,extends:…,precedes:…
+set listchars=tab:▸\ ,lead:.,eol:↵,trail:.,extends:…,precedes:…
 
 " --------------------------------------------------
 " インデント設定
