@@ -1,260 +1,161 @@
-if [ ! -e $HOME/.zshrc.zwc -o $HOME/.zshrc -nt $HOME/.zshrc.zwc ]; then
-  zcompile ~/.zshrc
+##########################
+# zinit
+##########################
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-########################################
-# 環境変数
-########################################
-export LANG=ja_JP.UTF-8
-# composer
-if [ -d $HOME/.composer ]; then 
-    export PATH=$HOME/.composer/vendor/bin:$PATH
-fi
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
 
-# nodebrew
-if [ -d $HOME/.nodebrew ]; then 
-    export PATH=$HOME/.nodebrew/current/bin:$PATH
-fi
+# テーマのインストール
+# (テーマに依存しているoh-my-zshのライブラリを追加し、テーマを追加する)
+zinit for \
+  OMZL::git.zsh \
+  OMZL::theme-and-appearance.zsh \
+  atload'RPROMPT=""' \
+    OMZT::pmcgee
 
-# anyenv
-if which anyenv > /dev/null; then
-    if ! [ -f /tmp/anyenv.cache ]; then
-        anyenv init - --no-rehash > /tmp/anyenv.cache
-        zcompile /tmp/anyenv.cache
-    fi
-    source /tmp/anyenv.cache
-fi
+# 遅延読み込みすると動かないプラグイン
+zinit for \
+  tarruda/zsh-autosuggestions
 
-# haskell
-if [ -d $HOME/Library/Haskell/bin ]; then 
-    export PATH=$HOME/Library/Haskell/bin:$PATH
-fi
+# 遅延読み込みしても大丈夫なプラグイン
+zinit wait lucid for \
+  zsh-users/zsh-completions \
+  zsh-users/zsh-syntax-highlighting \
+  zdharma/history-search-multi-word \
+  OMZP::autojump \
+  b4b4r07/enhancd
 
-# Golang
-if which go > /dev/null; then
-    if [ ! -d $HOME/go ]; then
-        mkdir $HOME/go
-    fi
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
-fi
 
-# direnv
-if which dotenv > /dev/null; then
-    if ! [ -f /tmp/dotenv.cache ]; then
-        dotenv init - --no-rehash > /tmp/dotenv.cache
-        zcompile /tmp/dotenv.cache
-    fi
-    source /tmp/dotenv.cache
-fi
+##########################
+# 自動補完関係
+##########################
 
-# MySQL
-export MYSQL_PS1='\u@\h[\d] > '
+# 改行用の変数を用意
+NEWLINE=$'\n'
 
-# color setting
-export TERM=xterm-256color
-
-# Java options ( used by mvn ) 
-export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
-
-# Homebrew
-if which brew > /dev/null; then
-    # brew cask option
-    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-    # brew で入るパッケージを優先
-    export PATH=$(brew --prefix)/bin:$PATH
-fi
-
-# history
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
-HISTSIZE=50000
-SAVEHIST=10000
-
-########################################
-# zplug
-########################################
-if [ -f $HOME/dotfiles/.zshrc.zplug ]; then
-    source $HOME/dotfiles/.zshrc.zplug
-fi
-
-########################################
-# google cloud sdk
-########################################
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then
-    source $HOME/google-cloud-sdk/path.zsh.inc
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
-    source $HOME/google-cloud-sdk/completion.zsh.inc
-fi
-
-########################################
-# 単語設定/補完
-########################################
-
-# 単語の区切り文字を指定する
-autoload -Uz select-word-style
-select-word-style default
-# ここで指定した文字は単語区切りとみなされる
-# / も区切りと扱うので、^W でディレクトリ１つ分を削除できる
-zstyle ':zle:*' word-chars " /=;@:{},|"
-zstyle ':zle:*' word-style unspecified
-
-# 補完機能を有効にする
-autoload -Uz compinit && compinit -c
-
-# 色設定
-zstyle ':completion:*' list-colors ${LSCOLORS}
+# 補完候補の上にカテゴリを表示する
+zstyle ':completion:*' format "${NEWLINE}%B%F{blue}[ Completing %d ]%f%b"
+zstyle ':completion:*' group-name '' # 空文字にしておくとタグ名が自動的に設定される
 
 # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# ../ の後は今いるディレクトリを補完しない
-zstyle ':completion:*' ignore-parents parent pwd ..
+# 補完対象の色が出る(ディレクトリやファイルが色でわかるようになる)
+zstyle ':completion:*' list-colors "${LS_COLORS}"
 
-# sudo の後ろでコマンド名を補完する
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+# 補完を選ぶときに色がつく（背景色） trueでメニュー補完を始める。selectで指定した候補以上になると選択(背景色が変わる)
+zstyle ':completion:*:default' menu true select=2
+
+# _complete 自動補完
+# _approximate 近似値補完(候補が出る
+# _prefix 単語の途中の補完
+# _correct 完全な補完(候補無しで変換される
+zstyle ':completion:*' completer _complete _approximate # _prefix
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
-# git のエスケープを有効
-autoload -Uz git-escape-magic
-git-escape-magic
+# Shift-Tab で自動補完のカーソルを戻す
+bindkey "^[[Z" reverse-menu-complete
 
-# kubernetes
-kubectl() {
-  if [ $commands[kubectl] ]; then 
-      unfunction "$0"
-      source <(kubectl completion zsh)
-      $0 "$@"
-  fi
-}
-() {
-  local kubeps1_sh="$(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh"
-  if [[ -f "$kubeps1_sh" ]]; then
-      source $kubeps1_sh
-      PROMPT='
-%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%} %{$fg[white]%}%B${PWD/#$HOME/~}%b%{$reset_color%} %B$(kube_ps1)%b%{$reset_color%}
-$(git_prompt_info)%(!.#.$) '
-  fi
-}
+# 補完機能の関数(compinit)を利用できるようにする
+autoload -U compinit
+# ユーティリティ関数が定義されて必要なすべてのシェル関数が自動ロードされるように調整される
+compinit
 
-########################################
-# オプション
-########################################
-# 日本語ファイル名を表示可能にする
-setopt print_eight_bit
 
-# beep を無効にする
-setopt no_beep
+##########################
+# option設定
+##########################
+# アラート音をOFF
+setopt NO_BEEP
 
-# フローコントロールを無効にする
-setopt no_flow_control
-
-# '#' 以降をコメントとして扱う
-setopt interactive_comments
-
-# ディレクトリ名だけでcdする
-setopt auto_cd
-
-# cd したら自動的にpushdする
-setopt auto_pushd
-
-# 重複したディレクトリを追加しない
-setopt pushd_ignore_dups
-
-# = の後はパス名として補完する
-setopt magic_equal_subst
-
-# 同時に起動したzshの間でヒストリを共有する
-setopt share_history
-
-# 同じコマンドをヒストリに残さない
-setopt hist_ignore_all_dups
+# 同じコマンドをヒストリに残さない(ヒストリを^Pで呼び出す場合に困るのでonにしない)
+# バッファの効率は良くなるので好み
+# setopt HIST_IGNORE_ALL_DUPS
+# 直前と同じコマンドはヒストリに保存しない
+setopt HIST_IGNORE_DUPS
 
 # ヒストリファイルに保存するとき、すでに重複したコマンドがあったら古い方を削除する
-setopt hist_save_nodups
-
-# スペースから始まるコマンド行はヒストリに残さない
-setopt hist_ignore_space
+setopt HIST_SAVE_NO_DUPS
 
 # ヒストリに保存するときに余分なスペースを削除する
-setopt hist_reduce_blanks
+setopt HIST_REDUCE_BLANKS
 
-# 補完候補が複数あるときに自動的に一覧表示する
-setopt auto_menu
+# 同時に起動したzshの間でヒストリを共有する
+setopt SHARE_HISTORY
 
-# 高機能なワイルドカード展開を使用する
-setopt extended_glob
+# 関数定義のためのコマンドはヒストリに保存しない
+setopt HIST_NO_FUNCTIONS
+
+# インタラクティブシェルでコメントが書ける
+setopt interactivecomments
 
 
-########################################
+##########################
 # エイリアス
-########################################
+##########################
 alias ls='ls -G'
-alias la='ls -a'
 alias ll='ls -l'
 alias l='ls -la'
 
-alias grep='grep --color=auto'
-
-alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-
+alias rm='rm -i'
 alias mkdir='mkdir -p'
 
-alias vi='vim'
-
-# sudo の後のコマンドでエイリアスを有効にする
-alias sudo='sudo '
+alias grep='grep --color=auto'
 
 # 作業ディレクトリ作成&移動
 alias wkdir='mkdir ~/work/$(date "+%Y-%m-%d") && cd ~/work/$(date "+%Y-%m-%d")'
 
-########################################
-# peco
-########################################
 
-# historyをpecoでanyting search
-function peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
+##########################
+# 環境変数
+##########################
+# 履歴保存ファイルの場所(インタラクティブシェル終了時に保存)
+HISTFILE=${HOME}/.zsh_history
+
+# 内部履歴リスト(メモリ内)に保存されるイベントの最大数
+HISTSIZE=10000
+
+# 履歴ファイルに保存する履歴イベントの最大数
+SAVEHIST=50000
+
+# 256色で表現
+export TERM=xterm-256color
+
+# fzfの設定: 高さ40%, 下に表示, fzfの表示は枠線を表示
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# MySQL
+export MYSQL_PS1='\u@\h[\d] > '
+
+
+
+##########################
+# ファイル読み込み
+##########################
+
+() {
+  local files=(
+    # google cloud sdk
+    $HOME/google-cloud-sdk/path.zsh.inc
+    $HOME/google-cloud-sdk/completion.zsh.inc
+  )
+  local file
+  for file in ${files[@]}; do
+    [ -f ${file} ] && source ${file}
+  done
 }
-zle -N peco-select-history
-bindkey '^r' peco-select-history # C-r
-
-# vim をfzf で開く
-function fzf-open-file-on-vim () {
-    find . | fzf --preview 'head -100 {}' | xargs sh -c 'vim "$0" < /dev/tty'
-}
-zle -N fzf-open-file-on-vim
-bindkey '^v^r' fzf-open-file-on-vim     # C-v C-r
-
-# git checkout をpeco 経由で実行
-function peco-git-checkout () {
-    git branch | peco | sed -E 's/(\*| )//g' | xargs git checkout
-    zle accept-line
-}
-zle -N peco-git-checkout
-bindkey '^g^r' peco-git-checkout    # C-g C-r
-
-########################################
-# tmux の起動
-########################################
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
 
