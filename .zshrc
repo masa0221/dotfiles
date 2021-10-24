@@ -1,5 +1,45 @@
-# アラート音をOFF
-setopt NO_BEEP
+##########################
+# zinit
+##########################
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# テーマのインストール
+# (テーマに依存しているoh-my-zshのライブラリを追加し、テーマを追加する)
+zinit for \
+  OMZL::git.zsh \
+  OMZL::theme-and-appearance.zsh \
+  atload'RPROMPT=""' \
+    OMZT::pmcgee
+
+# 遅延読み込みすると動かないプラグイン
+zinit for \
+  tarruda/zsh-autosuggestions
+
+# 遅延読み込みしても大丈夫なプラグイン
+zinit wait lucid for \
+  zsh-users/zsh-completions \
+  zsh-users/zsh-syntax-highlighting \
+  zdharma/history-search-multi-word \
+  OMZP::autojump \
+  b4b4r07/enhancd
+
+
+##########################
+# 自動補完関係
+##########################
+
 # 改行用の変数を用意
 NEWLINE=$'\n'
 
@@ -22,6 +62,9 @@ zstyle ':completion:*:default' menu true select=2
 # _correct 完全な補完(候補無しで変換される
 zstyle ':completion:*' completer _complete _approximate # _prefix
 
+# ps コマンドのプロセス名補完
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+
 # Shift-Tab で自動補完のカーソルを戻す
 bindkey "^[[Z" reverse-menu-complete
 
@@ -31,80 +74,37 @@ autoload -U compinit
 compinit
 
 
-# zplug (brew install zplug のあとに以下を指定)
-export ZPLUG_HOME=/usr/local/opt/zplug
-source ${ZPLUG_HOME}/init.zsh
-
-# 補完機能の関数(zsh標準で入っていないものを利用できるように)
-zplug "zsh-users/zsh-completions", lazy:true
-
-# テーマファイルを読み込む
-zplug "themes/pmcgee", from:oh-my-zsh, hook-load:"RPROMPT=''"
-
-# コマンド入力時に色がつく
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-
-export TERM=xterm-256color # コレを設定しておかないと色が薄めにならない
-zplug "tarruda/zsh-autosuggestions", defer:2
-
-# brew install autojump のあとに以下を指定
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-zplug "plugins/autojump", from:oh-my-zsh, lazy:true
-
-# cd コマンドを拡張してインタラクティブにできるもの
-zplug "b4b4r07/enhancd", use:init.sh
-
-# # 高機能なワイルドカード展開を使用する
-# setopt extended_glob を使うときは以下を入れる(キャレットが特殊文字になるため)
-# zplug "knu/zsh-git-escape-magic", lazy:true
-
-# コマンドをリンクして、PATH に追加し、プラグインは読み込む
-zplug load
-
-
-# インタラクティブシェル終了時に履歴保存ファイル
-HISTFILE=${HOME}/.zsh_history
-# メモリ内に保存される履歴の最大数
-HISTSIZE=10000
-SAVEHIST=50000
+##########################
+# option設定
+##########################
+# アラート音をOFF
+setopt NO_BEEP
 
 # 同じコマンドをヒストリに残さない(ヒストリを^Pで呼び出す場合に困るのでonにしない)
 # バッファの効率は良くなるので好み
 # setopt HIST_IGNORE_ALL_DUPS
 # 直前と同じコマンドはヒストリに保存しない
 setopt HIST_IGNORE_DUPS
+
 # ヒストリファイルに保存するとき、すでに重複したコマンドがあったら古い方を削除する
 setopt HIST_SAVE_NO_DUPS
+
 # ヒストリに保存するときに余分なスペースを削除する
 setopt HIST_REDUCE_BLANKS
+
 # 同時に起動したzshの間でヒストリを共有する
 setopt SHARE_HISTORY
+
 # 関数定義のためのコマンドはヒストリに保存しない
 setopt HIST_NO_FUNCTIONS
 
+# インタラクティブシェルでコメントが書ける
+setopt interactivecomments
 
-# 高さ40%, 下に表示, fzfの表示は枠線を表示
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-# historyをpecoでanyting search
-function fzf-select-history() {
-    # history 逆順,番号ナシ,1行目から取得 | 逆順にする(入力が新しい順) | 入力された内容でフィルタ
-    # BUFFER変数はコマンドの入力前の値
-    BUFFER=$(history -rn 1 | fzf -q "${LBUFFER}")
 
-    # カーソルをバッファの文字数に指定(つまり CURSOR=$ と対して変わらん)
-    # CURSORが0なら最初になり、$なら最後になる
-    # $#BUFFER はBUFFER変数内の文字数を出力
-    CURSOR=${#BUFFER}
-
-    # コマンドラインを再表示
-    # zle clear-screen を使うと画面ごとリセットされるのでナシ
-    zle redisplay
-}
-# ユーザー定義のwidgetsは-Nを指定することで定義できる
-zle -N fzf-select-history
-bindkey '^r' fzf-select-history # C-r
-
-# alias
+##########################
+# エイリアス
+##########################
 alias ls='ls -G'
 alias ll='ls -l'
 alias l='ls -la'
@@ -118,4 +118,26 @@ alias grep='grep --color=auto'
 
 # 作業ディレクトリ作成&移動
 alias wkdir='mkdir ~/work/$(date "+%Y-%m-%d") && cd ~/work/$(date "+%Y-%m-%d")'
+
+
+##########################
+# 環境変数
+##########################
+# 履歴保存ファイルの場所(インタラクティブシェル終了時に保存)
+HISTFILE=${HOME}/.zsh_history
+
+# 内部履歴リスト(メモリ内)に保存されるイベントの最大数
+HISTSIZE=10000
+
+# 履歴ファイルに保存する履歴イベントの最大数
+SAVEHIST=50000
+
+# 256色で表現
+export TERM=xterm-256color
+
+# fzfの設定: 高さ40%, 下に表示, fzfの表示は枠線を表示
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# MySQL
+export MYSQL_PS1='\u@\h[\d] > '
 
