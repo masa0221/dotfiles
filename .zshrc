@@ -99,7 +99,7 @@ setopt SHARE_HISTORY
 setopt HIST_NO_FUNCTIONS
 
 # インタラクティブシェルでコメントが書ける
-setopt interactivecomments
+setopt INTERACTIVE_COMMENTS
 
 
 ##########################
