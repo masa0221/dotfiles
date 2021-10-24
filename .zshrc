@@ -141,3 +141,21 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # MySQL
 export MYSQL_PS1='\u@\h[\d] > '
 
+
+
+##########################
+# ファイル読み込み
+##########################
+
+() {
+  local files=(
+    # google cloud sdk
+    $HOME/google-cloud-sdk/path.zsh.inc
+    $HOME/google-cloud-sdk/completion.zsh.inc
+  )
+  local file
+  for file in ${files[@]}; do
+    [ -f ${file} ] && source ${file}
+  done
+}
+
