@@ -11,6 +11,7 @@ set cursorline
 set list
 set listchars=tab:▸\ ,lead:.,eol:↵,trail:.,extends:…,precedes:…
 
+
 " --------------------------------------------------
 " インデント設定
 " --------------------------------------------------
@@ -44,6 +45,26 @@ set smartcase
 
 
 " --------------------------------------------------
+" 補完
+" --------------------------------------------------
+" コマンドライン補完の拡張をON
+set wildmenu
+
+
+" --------------------------------------------------
+" Netrw(ファイラ)の設定
+" --------------------------------------------------
+" tree view 表示
+let g:netrw_liststyle=3
+
+" vでファイルを右に開ける
+let g:netrw_altv=1
+
+" ウィンドウの表示割合を変更(単位:%)
+let g:netrw_winsize=80
+
+
+" --------------------------------------------------
 " 未分類
 " --------------------------------------------------
 "  通知音をすべてOFFにする
@@ -57,11 +78,14 @@ set hidden
 " vim-plug の設定
 " --------------------------------------------------
 " 下に表示
-let g:plug_window = 'belowright 10new'
+let g:plug_window='belowright 10new'
 
 call plug#begin('~/.vim/plugged')
   " Vim日本語マニュアル
   Plug 'https://github.com/vim-jp/vimdoc-ja.git'
+
+  " カラースキーム
+  Plug 'sainnhe/sonokai'
 
   " ステータスライン表示
   Plug 'itchyny/lightline.vim'
@@ -74,9 +98,6 @@ call plug#begin('~/.vim/plugged')
 
   " git操作系
   Plug 'tpope/vim-fugitive'
-
-  " カラースキーム
-  Plug 'sainnhe/sonokai'
 call plug#end()
 
 
@@ -87,9 +108,9 @@ if has('termguicolors')
   set termguicolors
 endif
 " The configuration options should be placed before `colorscheme sonokai`
-let g:sonokai_style = 'maia'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
+let g:sonokai_style='maia'
+let g:sonokai_enable_italic=1
+let g:sonokai_disable_italic_comment=1
 colorscheme sonokai
 
 
@@ -100,7 +121,7 @@ colorscheme sonokai
 set laststatus=2
 
 " lightlineの設定
-let g:lightline = {
+let g:lightline={
       \ 'colorscheme': 'sonokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
