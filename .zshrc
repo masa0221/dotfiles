@@ -15,14 +15,6 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
-# テーマのインストール
-# (テーマに依存しているoh-my-zshのライブラリを追加し、テーマを追加する)
-zinit for \
-  OMZL::git.zsh \
-  OMZL::theme-and-appearance.zsh \
-  atload'RPROMPT=""' \
-    OMZT::pmcgee
-
 # 遅延読み込みすると動かないプラグイン
 zinit for \
   tarruda/zsh-autosuggestions
@@ -34,6 +26,23 @@ zinit wait lucid for \
   zdharma/history-search-multi-word \
   OMZP::autojump \
   b4b4r07/enhancd
+
+
+##########################
+# 色設定
+##########################
+# $bg などの色をかんたんに扱えるようにする(OMZT::pmcgeeで利用中)
+autoload -U colors && colors
+
+# RPROMPTで$fg[$NCOLOR]などの変数を展開する(OMZT::pmcgeeで利用中)
+setopt PROMPT_SUBST
+
+# テーマのインストール
+# (テーマに依存しているoh-my-zshのライブラリを追加し、テーマを追加する)
+zinit for \
+  OMZL::git.zsh \
+  atload'RPROMPT=""' \
+    OMZT::pmcgee
 
 
 ##########################
@@ -75,7 +84,7 @@ compinit
 
 
 ##########################
-# option設定
+# その他option設定
 ##########################
 # アラート音をOFF
 setopt NO_BEEP
