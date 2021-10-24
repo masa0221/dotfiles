@@ -1,4 +1,31 @@
 " --------------------------------------------------
+" vim-plug の設定
+" --------------------------------------------------
+" 下に表示
+let g:plug_window='belowright 10new'
+
+call plug#begin('~/.vim/plugged')
+  " Vim日本語マニュアル
+  Plug 'https://github.com/vim-jp/vimdoc-ja.git'
+
+  " カラースキーム
+  Plug 'sainnhe/sonokai'
+
+  " ステータスライン表示
+  Plug 'itchyny/lightline.vim'
+
+  " gitのブランチ表示をステータスラインで利用する用
+  Plug 'itchyny/vim-gitbranch'
+
+  " 行番号の左にgitの差分を表示
+  Plug 'airblade/vim-gitgutter'
+
+  " git操作系
+  Plug 'tpope/vim-fugitive'
+call plug#end()
+
+
+" --------------------------------------------------
 " 表示設定
 " --------------------------------------------------
 " 行番号の表示
@@ -72,33 +99,6 @@ set belloff=all
 
 " バッファ変更後バッファ移動で警告が出ないように
 set hidden
-
-
-" --------------------------------------------------
-" vim-plug の設定
-" --------------------------------------------------
-" 下に表示
-let g:plug_window='belowright 10new'
-
-call plug#begin('~/.vim/plugged')
-  " Vim日本語マニュアル
-  Plug 'https://github.com/vim-jp/vimdoc-ja.git'
-
-  " カラースキーム
-  Plug 'sainnhe/sonokai'
-
-  " ステータスライン表示
-  Plug 'itchyny/lightline.vim'
-
-  " gitのブランチ表示をステータスラインで利用する用
-  Plug 'itchyny/vim-gitbranch'
-
-  " 行番号の左にgitの差分を表示
-  Plug 'airblade/vim-gitgutter'
-
-  " git操作系
-  Plug 'tpope/vim-fugitive'
-call plug#end()
 
 
 " --------------------------------------------------
