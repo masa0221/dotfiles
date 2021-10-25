@@ -72,6 +72,16 @@ set smartcase
 
 
 " --------------------------------------------------
+" ファイル検索
+" --------------------------------------------------
+"  ag コマンドが利用可能ならagで検索する
+if executable('ag')
+  set grepprg=ag\ $*\ --nogroup
+  set grepformat=%f:%l:%m
+endif
+
+
+" --------------------------------------------------
 " 補完
 " --------------------------------------------------
 " コマンドライン補完の拡張をON
@@ -143,5 +153,4 @@ set updatetime=100
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-highlight SignColumn ctermbg=none
 
