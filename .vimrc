@@ -110,6 +110,9 @@ let g:netrw_altv=1
 " ウィンドウの表示割合を変更(単位:%)
 let g:netrw_winsize=80
 
+" 非表示にするファイルを指定
+let g:netrw_list_hide=netrw_gitignore#Hide().'.*\.swp$'
+
 
 " --------------------------------------------------
 " 未分類
