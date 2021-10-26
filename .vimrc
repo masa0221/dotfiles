@@ -34,8 +34,10 @@ set number
 " 行番号の強調表示
 set cursorline
 
-" タブや行末などの表示設定
+" listモード(タブや行末などの表示をする設定)をON
 set list
+
+" listモードで表示する文字を設定
 set listchars=tab:▸\ ,lead:.,eol:↵,trail:.,extends:…,precedes:…
 
 
