@@ -168,8 +168,3 @@ let g:lightline={
 " 差分表示を100msに変更(vim-gitgutter)
 set updatetime=100
 
-" 変更内容の色設定(左にgitの差分を表示)
-highlight GitGutterAdd    guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#bbbb00 ctermfg=3
-highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-
