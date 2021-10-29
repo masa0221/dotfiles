@@ -25,6 +25,9 @@ call plug#begin('~/.vim/plugged')
 
   " コメントアウトの操作
   Plug 'tpope/vim-commentary'
+
+  " Tagbar(構造)を表示
+  Plug 'preservim/tagbar'
 call plug#end()
 
 
@@ -188,4 +191,7 @@ nnoremap <F5> :source $MYVIMRC<CR>
 
 " ノーマルモード: SHIFT-F5 でプラグインインストール
 nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
+
+" ノーマルモード: F8 でTagbar(構造)を表示
+nmap <F8> :TagbarToggle<CR>
 
