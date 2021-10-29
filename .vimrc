@@ -22,6 +22,9 @@ call plug#begin('~/.vim/plugged')
 
   " git操作系
   Plug 'tpope/vim-fugitive'
+
+  " コメントアウトの操作
+  Plug 'tpope/vim-commentary'
 call plug#end()
 
 
