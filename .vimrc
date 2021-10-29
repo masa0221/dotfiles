@@ -131,6 +131,12 @@ set showcmd
 " exコマンドの履歴
 set history=5000
 
+" ディスクに書き込まれるまでの時間[ms](入力がない状態から数える)
+" また、CursorHoldが呼び出されるまでの時間にも利用される
+" vim-gitgutterの中でこの値が参照されていて、sign(+-などの表示)の更新に使われる
+" https://github.com/airblade/vim-gitgutter/blob/256702dd1432894b3607d3de6cd660863b331818/plugin/gitgutter.vim#L234
+set updatetime=100
+
 
 " --------------------------------------------------
 " カラースキーム
@@ -142,7 +148,11 @@ endif
 let g:sonokai_style='maia'
 let g:sonokai_enable_italic=1
 let g:sonokai_disable_italic_comment=1
-colorscheme sonokai
+try 
+  colorscheme sonokai
+catch
+  echo 'The specified theme could not be loaded. Note: It is occured always when initial installing.'
+endtry
 
 
 " --------------------------------------------------
@@ -165,8 +175,11 @@ let g:lightline={
 
 
 " --------------------------------------------------
-" Git関係
+" キーマッピング
 " --------------------------------------------------
-" 差分表示を100msに変更(vim-gitgutter)
-set updatetime=100
+" ノーマルモード: F2 で.vimrcを開く
+nnoremap <F2> :e $MYVIMRC<CR>
+
+" ノーマルモード: F5 で.vimrcを再読み込み
+nnoremap <F5> :source $MYVIMRC<CR>
 
