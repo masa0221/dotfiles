@@ -186,3 +186,6 @@ nnoremap <F2> :e $MYVIMRC<CR>
 " ノーマルモード: F5 で.vimrcを再読み込み
 nnoremap <F5> :source $MYVIMRC<CR>
 
+" ノーマルモード: SHIFT-F5 でプラグインインストール
+nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
+
