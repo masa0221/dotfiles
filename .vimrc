@@ -8,6 +8,9 @@ call plug#begin('~/.vim/plugged')
   " Vim日本語マニュアル
   Plug 'https://github.com/vim-jp/vimdoc-ja.git'
 
+  " 翻訳
+  Plug 'voldikss/vim-translator'
+
   " カラースキーム
   Plug 'sainnhe/sonokai'
 
@@ -178,6 +181,25 @@ let g:lightline={
       \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
+
+
+" --------------------------------------------------
+" 翻訳(voldikss/vim-translator)
+" --------------------------------------------------
+" 翻訳後の言語
+let g:translator_target_lang='ja'
+
+" 利用するエンジン
+let g:translator_default_engines=['google']
+
+" popupの最大幅(Windowの高さに対する相対的な割合)
+let g:translator_window_max_width=0.6
+
+" popupの最大の高さ(Windowの幅に対する相対的な割合)
+let g:translator_window_max_height=0.8
+
+" 翻訳ウィンドウの種類
+let g:translator_window_type='popup'
 
 
 " --------------------------------------------------
