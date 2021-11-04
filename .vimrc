@@ -1,7 +1,7 @@
 " --------------------------------------------------
 " vim-plug の設定
 " --------------------------------------------------
-" 下に表示
+" vim-plugのwindowを水平分割で下に表示
 let g:plug_window='belowright 10new'
 
 call plug#begin('~/.vim/plugged')
@@ -131,7 +131,7 @@ let g:netrw_list_hide=netrw_gitignore#Hide().'.*\.swp$'
 "  通知音をすべてOFFにする
 set belloff=all
 
-" バッファ変更後バッファ移動で警告が出ないように
+" 隠れバッファを有効にする(バッファ変更後バッファ移動で警告が出ないように)
 set hidden
 
 " ノーマルモードでのコマンドを右下に表示する
@@ -145,6 +145,10 @@ set history=5000
 " vim-gitgutterの中でこの値が参照されていて、sign(+-などの表示)の更新に使われる
 " https://github.com/airblade/vim-gitgutter/blob/256702dd1432894b3607d3de6cd660863b331818/plugin/gitgutter.vim#L234
 set updatetime=100
+
+" 仮想編集(文字がない場所も選択)できるように設定
+" (block: 矩形ビジュアルモード)
+set virtualedit=block
 
 
 " --------------------------------------------------
