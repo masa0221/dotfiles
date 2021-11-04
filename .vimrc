@@ -241,9 +241,9 @@ nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
 " ノーマルモード: F8 でTagbar(構造)を表示
 nnoremap <F8> :TagbarToggle<CR>
 
-" ノーマルモード：CTRL-p でMarkdownをプレビュー/停止(markdownファイルのみ有効)
+" ノーマルモード: CTRL-p でMarkdownをプレビュー/停止(markdownファイルのみ有効)
 nmap <C-p> <Plug>MarkdownPreviewToggle
 
-" ノーマルモード：CTRL-s でMarkdownプレビューを停止(markdownファイルのみ有効)
+" ノーマルモード: CTRL-s でMarkdownプレビューを停止(markdownファイルのみ有効)
 nmap <C-s> <Plug>MarkdownPreviewStop
 
