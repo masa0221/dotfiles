@@ -40,6 +40,8 @@ call plug#begin('~/.vim/plugged')
 
   " fzfのvimプラグインをインストール
   Plug 'junegunn/fzf.vim'
+
+  Plug 'simeji/winresizer'
 call plug#end()
 
 
@@ -194,6 +196,14 @@ let g:lightline={
       \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
+
+
+" --------------------------------------------------
+" Windowサイズを変更(simeji/winresizer)
+" --------------------------------------------------
+" 起動を CTRL-w の後に e を押す設定に変更
+" (<C-e>がデフォルトなのでスクロールとぶつかるため)
+let g:winresizer_start_key = '<C-w>e'
 
 
 " --------------------------------------------------
