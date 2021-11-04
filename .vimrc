@@ -31,6 +31,9 @@ call plug#begin('~/.vim/plugged')
 
   " Tagbar(構造)を表示
   Plug 'preservim/tagbar'
+
+  " markdown のプレビュー
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
 
