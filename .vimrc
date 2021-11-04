@@ -38,9 +38,10 @@ call plug#begin('~/.vim/plugged')
   " fzf本体のインストール
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
-  " fzfのvimプラグインをインストール
+  " fzfのvimプラグイン
   Plug 'junegunn/fzf.vim'
 
+  " windowのサイズ変更を簡単にするプラグイン
   Plug 'simeji/winresizer'
 call plug#end()
 
@@ -240,9 +241,9 @@ nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
 " ノーマルモード: F8 でTagbar(構造)を表示
 nnoremap <F8> :TagbarToggle<CR>
 
-" ノーマルモード：CTRL-p でMarkdownをプレビュー/停止
+" ノーマルモード：CTRL-p でMarkdownをプレビュー/停止(markdownファイルのみ有効)
 nmap <C-p> <Plug>MarkdownPreviewToggle
 
-" ノーマルモード：CTRL-s でMarkdownプレビューを停止
+" ノーマルモード：CTRL-s でMarkdownプレビューを停止(markdownファイルのみ有効)
 nmap <C-s> <Plug>MarkdownPreviewStop
 
