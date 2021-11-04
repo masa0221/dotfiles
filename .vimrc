@@ -34,6 +34,12 @@ call plug#begin('~/.vim/plugged')
 
   " markdown のプレビュー
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+  " fzf本体のインストール
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+  " fzfのvimプラグインをインストール
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
