@@ -222,5 +222,5 @@ nnoremap <F5> :source $MYVIMRC<CR>
 nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
 
 " ノーマルモード: F8 でTagbar(構造)を表示
-nmap <F8> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
 
