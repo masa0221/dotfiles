@@ -99,8 +99,33 @@ set smartcase
 " --------------------------------------------------
 "  ag コマンドが利用可能ならagで検索する
 if executable('ag')
-  set grepprg=ag\ $*\ --nogroup
-  set grepformat=%f:%l:%m
+  " 参考: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+  set grepprg=ag\ --vimgrep
+
+  function! Grep(...)
+    " ag と同じ使い方ができるように引数をスペースで結合する
+    " ag --vimgrep [引数] [引数]
+    return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+  endfunction
+
+  " -nargs=+               引数が必ず必要
+  " -complete=file_in_path path内のファイルとディレクトリに対して
+  " -bar                   パイプを指定できる
+  " cgetexpr               quickfixリストの作成(lgetexprはlocationリスト)
+  " Grep(<f-args>)         Grep関数を実行
+  command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+  command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+
+  " コマンド入力時に自動的にgrepをGrepに変更
+  cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
+  cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
+
+  augroup quickfix
+    autocmd!
+    " cgetexpr が実行された後に自動的にquickfixのリストを開く
+    autocmd QuickFixCmdPost cgetexpr cwindow
+    autocmd QuickFixCmdPost lgetexpr lwindow
+  augroup END
 endif
 
 
