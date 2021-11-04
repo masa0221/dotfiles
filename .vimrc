@@ -218,9 +218,15 @@ nnoremap <F2> :e $MYVIMRC<CR>
 " ノーマルモード: F5 で.vimrcを再読み込み
 nnoremap <F5> :source $MYVIMRC<CR>
 
-" ノーマルモード: SHIFT-F5 でプラグインインストール
+" ノーマルモード: SHIFT-F5 で現在未設定のプラグインファイルを削除 & プラグインインストール
 nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
 
 " ノーマルモード: F8 でTagbar(構造)を表示
 nnoremap <F8> :TagbarToggle<CR>
+
+" ノーマルモード：CTRL-p でMarkdownをプレビュー/停止
+nmap <C-p> <Plug>MarkdownPreviewToggle
+
+" ノーマルモード：CTRL-s でMarkdownプレビューを停止
+nmap <C-s> <Plug>MarkdownPreviewStop
 
