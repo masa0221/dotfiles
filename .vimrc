@@ -163,6 +163,18 @@ let g:netrw_list_hide=netrw_gitignore#Hide().'.*\.swp$'
 
 
 " --------------------------------------------------
+" fzfの設定
+" --------------------------------------------------
+" fzf でファイルを選択する時に利用するキーバインド
+" CTRL-tはtmuxに当てているので、CTRL-mを当てている
+" fzf_actionのデフォルトではctrl-xでsplitだがctrl-sの方が覚えやすいので変更
+let g:fzf_action = {
+  \ 'ctrl-m': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+
+" --------------------------------------------------
 " 未分類
 " --------------------------------------------------
 "  通知音をすべてOFFにする
@@ -254,6 +266,9 @@ let g:translator_window_type='popup'
 " --------------------------------------------------
 " キーマッピング
 " --------------------------------------------------
+" <Leader> を スペースキーに変更
+let mapleader="\<Space>"
+
 " ノーマルモード: F2 で.vimrcを開く
 nnoremap <F2> :e $MYVIMRC<CR>
 
@@ -271,4 +286,13 @@ nmap <C-p> <Plug>MarkdownPreviewToggle
 
 " ノーマルモード: CTRL-s でMarkdownプレビューを停止(markdownファイルのみ有効)
 nmap <C-s> <Plug>MarkdownPreviewStop
+
+" ノーマルモード: ファイル名検索をfzfで行う
+nnoremap <Leader>f :Files<CR>
+
+" ノーマルモード: ファイル内容検索をfzfで行う
+nnoremap <Leader><S-f> :Ag<CR>
+
+" ノーマルモード: バッファ名検索をfzfで行う
+nnoremap <Leader>b :Buffers<CR>
 
