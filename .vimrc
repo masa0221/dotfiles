@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'voldikss/vim-translator'
 
   " カラースキーム
-  Plug 'sainnhe/sonokai'
+  Plug 'rafi/awesome-vim-colorschemes'
 
   " ステータスライン表示
   Plug 'itchyny/lightline.vim'
