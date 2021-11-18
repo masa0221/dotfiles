@@ -43,6 +43,9 @@ call plug#begin('~/.vim/plugged')
 
   " windowのサイズ変更を簡単にするプラグイン
   Plug 'simeji/winresizer'
+
+  " オートコンプリートができる(LSPにも対応している)
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 
@@ -92,6 +95,15 @@ set ignorecase
 
 " 大文字が含まれていたらignorecaseを上書き
 set smartcase
+
+
+" --------------------------------------------------
+" インサートモード
+" --------------------------------------------------
+" start 挿入区間の始めでバックスペースを働かせる
+" eol 改行を超えてバックスペースを働かせる (行を連結する)
+" indent インデントを超えてバックスペースを働かせる
+set backspace=start,eol,indent
 
 
 " --------------------------------------------------
