@@ -62,8 +62,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完対象の色が出る(ディレクトリやファイルが色でわかるようになる)
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 
-# 補完を選ぶときに色がつく（背景色） trueでメニュー補完を始める。selectで指定した候補以上になると選択(背景色が変わる)
-zstyle ':completion:*:default' menu true select=2
+# menu: 補完を選ぶときに色がつく（背景色） menu true にすると1度タブを押すだけで補完される
+# select: 指定した候補以上になると選択(背景色が変わる)
+zstyle ':completion:*:default' menu select=2
 
 # _complete 自動補完
 # _approximate 近似値補完(候補が出る
@@ -109,6 +110,9 @@ setopt HIST_NO_FUNCTIONS
 
 # インタラクティブシェルでコメントが書ける
 setopt INTERACTIVE_COMMENTS
+
+# cd なしでカレントディレクトリを移動
+setopt AUTO_CD
 
 
 ##########################
