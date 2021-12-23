@@ -17,6 +17,7 @@ brew install tig
 brew install tree
 brew install awscli
 brew install jq
+brew install node
 
 # Remove outdated version
 brew cleanup
