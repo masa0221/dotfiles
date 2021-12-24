@@ -22,6 +22,7 @@ zinit wait lucid for \
   zsh-users/zsh-completions \
   zsh-users/zsh-syntax-highlighting \
   matthewnessworthy/history-search-multi-word \
+  soimort/translate-shell \
   OMZP::autojump \
   b4b4r07/enhancd
 

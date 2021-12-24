@@ -12,6 +12,7 @@ brew install tmux
 brew install fzf
 brew install autojump
 brew install gnu-sed
+brew install gawk
 brew install the_silver_searcher
 brew install tig
 brew install tree
