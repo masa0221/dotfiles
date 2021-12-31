@@ -8,7 +8,7 @@ cd `dirname $0`
 ## functions
 ########################
 function put_dot_files() {
-  local dotfiles=(.zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc)
+  local dotfiles=(.zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin)
   for dotfile in ${dotfiles[@]}; do
     local destination=${HOME}/${dotfile}
     if [ -e ${destination} -a ! -L ${destination} ]; then
@@ -17,9 +17,13 @@ function put_dot_files() {
         [qQ]) exit 1 ;;
         [bB])
           local backupfile=${HOME}/${dotfile}.$(date "+%s")
-          cp ${destination} ${HOME}/${dotfile}.$(date "+%s")
+          cp -r ${destination} ${HOME}/${dotfile}.$(date "+%s")
           echo "Backup file was created! (${backupfile})"
       esac
+    fi
+    if [ -d "${destination}" ]; then
+      # for directory
+      rm -r ${destination}
     fi
     ln -s -f $(pwd)/${dotfile} ${destination}
     echo "${dotfile} was created"
