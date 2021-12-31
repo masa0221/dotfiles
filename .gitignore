@@ -7,3 +7,9 @@
 *.iml
 .php_cs.cache
 .editorconfig
+
+# Metals
+.metals/
+.bloop/
+.ammonite/
+metals.sbt
