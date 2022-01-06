@@ -290,8 +290,10 @@ let mapleader="\<Space>"
 " ノーマルモード: F2 で.vimrcを開く
 nnoremap <F2> :e $MYVIMRC<CR>
 
-" ノーマルモード: F5 で.vimrcを再読み込み & ファイル再読み込み(bufferを更新)
-nnoremap <F5> :source $MYVIMRC<BAR>:e<CR>
+" ノーマルモード: F5 で.vimrcを再読み込み
+"  & ファイル再読み込み(bufferを更新)
+"  & 検索ハイライトを消す
+nnoremap <F5> :source $MYVIMRC<BAR>:e<BAR>:noh<CR>
 
 " ノーマルモード: SHIFT-F5 で現在未設定のプラグインファイルを削除 & プラグインインストール
 nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
