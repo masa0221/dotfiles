@@ -291,9 +291,7 @@ let mapleader="\<Space>"
 nnoremap <F2> :e $MYVIMRC<CR>
 
 " ノーマルモード: F5 で.vimrcを再読み込み
-"  & ファイル再読み込み(bufferを更新)
-"  & 検索ハイライトを消す
-nnoremap <F5> :source $MYVIMRC<BAR>:e<BAR>:noh<CR>
+nnoremap <F5> :source $MYVIMRC<CR>
 
 " ノーマルモード: SHIFT-F5 で現在未設定のプラグインファイルを削除 & プラグインインストール
 nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
@@ -315,4 +313,9 @@ nnoremap <Leader><S-f> :Ag<CR>
 
 " ノーマルモード: バッファ名検索をfzfで行う
 nnoremap <Leader>b :Buffers<CR>
+
+" ノーマルモード: CTRL-l
+"  ファイル再読み込み(bufferを更新)
+"  検索ハイライトを消す
+nnoremap <C-l> :e<BAR>:noh<CR>
 
