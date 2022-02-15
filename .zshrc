@@ -1,4 +1,20 @@
 ##########################
+# ファイル読み込み
+##########################
+function load_files() {
+  local file
+  for file in ${@}; do
+    [ -r ${file} ] && source ${file}
+  done
+}
+# Powerlevel10k
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+load_files $HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh
+
+
+##########################
 # zinit
 ##########################
 ### Added by Zinit's installer
@@ -20,21 +36,12 @@ zinit for \
 # 遅延読み込みしても大丈夫なプラグイン
 zinit wait lucid for \
   zsh-users/zsh-completions \
-  zsh-users/zsh-syntax-highlighting \
   matthewnessworthy/history-search-multi-word \
   soimort/translate-shell \
-  OMZP::autojump \
-  b4b4r07/enhancd
+  b4b4r07/enhancd \
+  zdharma-continuum/fast-syntax-highlighting
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 
 ##########################
@@ -168,16 +175,13 @@ export MYSQL_PS1='\u@\h[\d] > '
 ##########################
 # ファイル読み込み
 ##########################
-
-() {
-  local files=(
-    # google cloud sdk
-    $HOME/google-cloud-sdk/path.zsh.inc
-    $HOME/google-cloud-sdk/completion.zsh.inc
-  )
-  local file
-  for file in ${files[@]}; do
-    [ -f ${file} ] && source ${file}
-  done
-}
+files=(
+  # google cloud sdk
+  $HOME/google-cloud-sdk/path.zsh.inc
+  $HOME/google-cloud-sdk/completion.zsh.inc
+  # Powerlevel10k
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  $HOME/.p10k.zsh
+)
+load_files ${files[*]}
 
