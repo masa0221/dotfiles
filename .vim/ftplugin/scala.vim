@@ -21,3 +21,58 @@ nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
+inoremap { {}<Left>
+inoremap [ []<Left>
+inoremap ( ()<Left>
+
+" 開始の括弧を消したら閉じる括弧も消す
+function! RemoveCloseBracket()
+  let l:cursol_letter = getline(".")[col(".")-1]        " 今のカーソルにある文字
+  let l:remove_target_letter = getline(".")[col(".")-2] " 削除対象の文字
+  if s:isOpenBracketAndCloseBracket(remove_target_letter, cursol_letter)
+    return "\<BS>\<Right>\<BS>"
+  else
+    return "\<BS>"
+  endif
+endfunction
+
+" 隣接した{}で改行したらインデント
+function! IndentInnerBetweenBrackets()
+  let l:cursol_letter = getline(".")[col(".")-1]  " 今のカーソルにある文字
+  let l:inputed_letter = getline(".")[col(".")-2] " 入力した文字
+
+  " カッコの間で改行をしているか判定
+  if s:isOpenBracketAndCloseBracket(inputed_letter, cursol_letter)
+    return "\n\t\n\<UP>\<END>"
+  else
+    return "\n"
+  endif
+endfunction
+
+function! s:isOpenBracketAndCloseBracket(open_letter, close_letter)
+  let l:targets="{},[],()"
+  for l:brackets in split(l:targets, ",")
+    if len(brackets) != 2
+      continue
+    endif
+    if a:open_letter == brackets[0] && a:close_letter == brackets[1]
+      return 1
+    endif
+  endfor
+  return 0
+endfunction
+
+" matchを改行した場合インデントを入れる
+function! IndentNextLine()
+  if getline(".") =~ " match$"
+    return "\n\t"
+  else
+    return "\n"
+  endif
+endfunction
+
+
+" Enterに割り当て
+inoremap <silent> <expr> <CR> IndentNextLine()<BAR>IndentInnerBetweenBrackets()
+inoremap <silent> <expr> <BS> RemoveCloseBracket()
