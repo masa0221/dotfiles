@@ -26,6 +26,14 @@ inoremap { {}<Left>
 inoremap [ []<Left>
 inoremap ( ()<Left>
 
+inoremap <silent> <expr> } CancelCloseBracket("}")
+inoremap <silent> <expr> ] CancelCloseBracket("]")
+inoremap <silent> <expr> ) CancelCloseBracket(")")
+
+inoremap <silent> <expr> <CR> IndentNextLine()
+inoremap <silent> <expr> <BS> RemoveCloseBracket()
+
+
 " 開始の括弧を消したら閉じる括弧も消す
 function! RemoveCloseBracket()
   let l:cursol_letter = getline(".")[col(".")-1]        " 今のカーソルにある文字
@@ -37,12 +45,33 @@ function! RemoveCloseBracket()
   endif
 endfunction
 
-" 隣接した{}で改行したらインデント
-function! IndentInnerBetweenBrackets()
+" 終了のカッコが指定されているなら書かない
+function! CancelCloseBracket(inputed_letter)
+  let l:previous_inputed_letter = getline(".")[col(".")-2] " 入力した文字の一つ前
+
+  " 対応するカッコか判定
+  if s:isOpenBracketAndCloseBracket(previous_inputed_letter, a:inputed_letter)
+    return "\<Right>"
+  else
+    return a:inputed_letter
+  endif
+endfunction
+
+function! IndentNextLine()
+  " matchを改行した場合インデントを入れる
+  if getline(".") =~ " match$"
+    return "\n\t"
+  else
+    " 隣接した{}で改行したらインデント
+    return s:indentInnerBetweenBrackets()
+  endif
+endfunction
+
+function! s:indentInnerBetweenBrackets()
   let l:cursol_letter = getline(".")[col(".")-1]  " 今のカーソルにある文字
   let l:inputed_letter = getline(".")[col(".")-2] " 入力した文字
 
-  " カッコの間で改行をしているか判定
+  " カッコの間で改行するか判定
   if s:isOpenBracketAndCloseBracket(inputed_letter, cursol_letter)
     return "\n\t\n\<UP>\<END>"
   else
@@ -63,16 +92,3 @@ function! s:isOpenBracketAndCloseBracket(open_letter, close_letter)
   return 0
 endfunction
 
-" matchを改行した場合インデントを入れる
-function! IndentNextLine()
-  if getline(".") =~ " match$"
-    return "\n\t"
-  else
-    return "\n"
-  endif
-endfunction
-
-
-" Enterに割り当て
-inoremap <silent> <expr> <CR> IndentNextLine()<BAR>IndentInnerBetweenBrackets()
-inoremap <silent> <expr> <BS> RemoveCloseBracket()
