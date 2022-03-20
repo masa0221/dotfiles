@@ -1,7 +1,7 @@
 ##########################
 # ファイル読み込み
 ##########################
-function load_files() {
+function load_files_if_exists() {
   local file
   for file in ${@}; do
     [ -r ${file} ] && source ${file}
@@ -11,7 +11,7 @@ function load_files() {
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-load_files $HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh
+load_files_if_exists $HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh
 
 
 ##########################
@@ -101,6 +101,28 @@ compinit
 
 
 ##########################
+# シェル変数
+##########################
+# 履歴保存ファイルの場所(インタラクティブシェル終了時に保存)
+HISTFILE=${HOME}/.zsh_history
+
+# 内部履歴リスト(メモリ内)に保存されるイベントの最大数
+HISTSIZE=10000
+
+# 履歴ファイルに保存する履歴イベントの最大数
+SAVEHIST=50000
+
+# 256色で表現
+TERM=xterm-256color
+
+# fzfの設定: 高さ40%, 下に表示, fzfの表示は枠線を表示
+FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# MySQL
+MYSQL_PS1='\u@\h[\d] > '
+
+
+##########################
 # その他option設定
 ##########################
 # アラート音をOFF
@@ -134,7 +156,7 @@ setopt AUTO_CD
 ##########################
 # エイリアス
 ##########################
-alias ls='ls -G'
+alias ls='ls --color=auto'
 alias ll='ls -l'
 alias l='ls -la'
 
@@ -150,29 +172,6 @@ alias wkdir='mkdir ~/work/$(date "+%Y-%m-%d") && cd ~/work/$(date "+%Y-%m-%d")'
 
 
 ##########################
-# 環境変数
-##########################
-# 履歴保存ファイルの場所(インタラクティブシェル終了時に保存)
-HISTFILE=${HOME}/.zsh_history
-
-# 内部履歴リスト(メモリ内)に保存されるイベントの最大数
-HISTSIZE=10000
-
-# 履歴ファイルに保存する履歴イベントの最大数
-SAVEHIST=50000
-
-# 256色で表現
-export TERM=xterm-256color
-
-# fzfの設定: 高さ40%, 下に表示, fzfの表示は枠線を表示
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-
-# MySQL
-export MYSQL_PS1='\u@\h[\d] > '
-
-
-
-##########################
 # ファイル読み込み
 ##########################
 files=(
@@ -183,5 +182,5 @@ files=(
   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
   $HOME/.p10k.zsh
 )
-load_files ${files[*]}
+load_files_if_exists ${files[*]}
 
