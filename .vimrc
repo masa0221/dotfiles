@@ -29,6 +29,9 @@ call plug#begin('~/.vim/plugged')
   " コメントアウトの操作
   Plug 'tpope/vim-commentary'
 
+  " 括弧を自動入力
+  Plug 'jiangmiao/auto-pairs'
+
   " Tagbar(構造)を表示
   Plug 'preservim/tagbar'
 
@@ -79,6 +82,14 @@ set softtabstop=2
 
 " インデントに使われるスペースの数
 set shiftwidth=2
+
+
+" --------------------------------------------------
+" 括弧の表示設定
+" --------------------------------------------------
+set showmatch
+set matchtime=1
+set matchpairs& matchpairs+=<:>
 
 
 " --------------------------------------------------
@@ -263,6 +274,12 @@ let g:winresizer_start_key = '<C-w>e'
 
 
 " --------------------------------------------------
+" 括弧の入力設定(jiangmiao/auto-pairs)
+" --------------------------------------------------
+let g:AutoPairsFlyMode = 1
+
+
+" --------------------------------------------------
 " 翻訳(voldikss/vim-translator)
 " --------------------------------------------------
 " 翻訳後の言語
@@ -319,3 +336,15 @@ nnoremap <Leader>b :Buffers<CR>
 "  検索ハイライトを消す
 nnoremap <C-l> :e<BAR>:noh<CR>
 
+" coc 用の設定
+if exists('g:did_coc_loaded')
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+  nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+endif
