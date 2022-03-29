@@ -336,6 +336,10 @@ nnoremap <Leader>b :Buffers<CR>
 "  検索ハイライトを消す
 nnoremap <C-l> :e<BAR>:noh<CR>
 
+" ビジュアルモード: 選択範囲を翻訳(window表示)
+vnoremap <Leader>t :TranslateW<CR>
+
+
 " coc 用の設定
 if exists('g:did_coc_loaded')
   nmap <silent> gd <Plug>(coc-definition)
