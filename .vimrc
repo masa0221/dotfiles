@@ -313,6 +313,11 @@ nnoremap <F5> :source $MYVIMRC<CR>
 " ノーマルモード: SHIFT-F5 で現在未設定のプラグインファイルを削除 & プラグインインストール
 nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
 
+" ノーマルモード: CTRL-l
+"  ファイル再読み込み(bufferを更新)
+"  検索ハイライトを消す
+nnoremap <C-l> :e<BAR>:noh<CR>
+
 " ノーマルモード: F8 でTagbar(構造)を表示
 nnoremap <F8> :TagbarToggle<CR>
 
@@ -322,22 +327,32 @@ nmap <C-p> <Plug>MarkdownPreviewToggle
 " ノーマルモード: CTRL-s でMarkdownプレビューを停止(markdownファイルのみ有効)
 nmap <C-s> <Plug>MarkdownPreviewStop
 
+" ノーマルモード: ファイル名検索(git管理しているファイルのみ)をfzfで行う
+nnoremap <Leader>ff :GFiles<CR>
+
 " ノーマルモード: ファイル名検索をfzfで行う
-nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>f<S-f> :Files<CR>
 
 " ノーマルモード: ファイル内容検索をfzfで行う
-nnoremap <Leader><S-f> :Ag<CR>
+nnoremap <Leader>fa :Ag<CR>
 
 " ノーマルモード: バッファ名検索をfzfで行う
-nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>fb :Buffers<CR>
 
-" ノーマルモード: CTRL-l
-"  ファイル再読み込み(bufferを更新)
-"  検索ハイライトを消す
-nnoremap <C-l> :e<BAR>:noh<CR>
+" ノーマルモード: コマンド検索をfzfで行う
+nnoremap <Leader>fc :Commands<CR>
+
+" ノーマルモード: ヘルプタグ検索をfzfで行う
+nnoremap <Leader>fh :Helptags<CR>
+
+" ノーマルモード: カーソルがあるワードを翻訳(window表示)
+nnoremap <Leader>tw :TranslateW <C-r><C-w><CR>
+
+" ノーマルモード: カーソルがある行を翻訳(window表示)
+nnoremap <Leader>tt :TranslateW <C-r><C-l><CR>
 
 " ビジュアルモード: 選択範囲を翻訳(window表示)
-vnoremap <Leader>t :TranslateW<CR>
+vnoremap <Leader>tt :TranslateW<CR>
 
 
 nmap <silent> gd <Plug>(coc-definition)
