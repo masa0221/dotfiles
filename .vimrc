@@ -95,15 +95,6 @@ function! s:on_lsp_buffer_enabled() abort
   " ドキュメントフォーマットのタイムアウト時間
   let g:lsp_format_sync_timeout = 1000
 
-  " LSPで検出するエラーを表示
-  let g:lsp_diagnostics_float_cursor = 1
-
-  " エラー時に表示される文字を指定
-  let g:lsp_diagnostics_signs_error = {'text': '✗'}
-
-  " 警告時に表示される文字を指定
-  let g:lsp_diagnostics_signs_warning = {'text': '‼'}
-
   " bufferに書き込む前にドキュメントをフォーマット
   autocmd! BufWritePre *.go,*.scala call execute('LspDocumentFormatSync')
 endfunction
@@ -164,6 +155,19 @@ if executable('gopls')
         \ })
   autocmd BufWritePre *.go LspDocumentFormatSync
 endif
+
+
+" LSPで検出するエラーを表示
+let g:lsp_diagnostics_float_cursor = 1
+
+" A> のサインは不要なので無効にする
+let g:lsp_document_code_action_signs_enabled = 0
+
+" エラー時に表示される文字を指定
+let g:lsp_diagnostics_signs_error = {'text': '✗'}
+
+" 警告時に表示される文字を指定
+let g:lsp_diagnostics_signs_warning = {'text': '‼'}
 
 
 " --------------------------------------------------
