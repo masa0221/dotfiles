@@ -8,6 +8,8 @@
 .php_cs.cache
 .editorconfig
 
+Session.vim
+
 # Metals
 .metals/
 .bloop/

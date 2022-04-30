@@ -47,9 +47,100 @@ call plug#begin('~/.vim/plugged')
   " windowのサイズ変更を簡単にするプラグイン
   Plug 'simeji/winresizer'
 
-  " オートコンプリートができる(LSPにも対応している)
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Language Server Protocol plugin
+  Plug 'prabirshrestha/vim-lsp'
+
+  " 言語サーバーのインストール・管理を簡単にする
+  Plug 'mattn/vim-lsp-settings'
+
+  " 非同期のオートコンプリート
+  Plug 'prabirshrestha/asyncomplete.vim'
+
+  " vim-lsp用の非同期のオートコンプリート
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
+
+
+" --------------------------------------------------
+" Language Server Protocol
+" --------------------------------------------------
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.go,*.scala call execute('LspDocumentFormatSync')
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" Scala
+if executable('metals-vim')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'metals',
+      \ 'cmd': {server_info->['metals-vim']},
+      \ 'initialization_options': { 'rootPatterns': 'build.sbt' },
+      \ 'whitelist': [ 'scala', 'sbt' ],
+      \ })
+endif
+
+" PHP
+if executable('intelephense')
+  augroup LspPHPIntelephense
+    au!
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'intelephense',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
+        \ 'whitelist': ['php'],
+        \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
+        \ 'workspace_config': {
+        \   'intelephense': {
+        \     'files': {
+        \       'maxSize': 1000000,
+        \       'associations': ['*.php', '*.phtml'],
+        \       'exclude': [],
+        \     },
+        \     'completion': {
+        \       'insertUseDeclaration': v:true,
+        \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
+        \       'triggerParameterHints': v:true,
+        \       'maxItems': 100,
+        \     },
+        \     'format': {
+        \       'enable': v:true
+        \     },
+        \   },
+        \ }
+        \})
+  augroup END
+endif
+
+" Go
+if executable('gopls')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-remote=auto']},
+        \ 'allowlist': ['go'],
+        \ })
+  autocmd BufWritePre *.go LspDocumentFormatSync
+endif
 
 
 " --------------------------------------------------
@@ -195,10 +286,8 @@ let g:netrw_list_hide=netrw_gitignore#Hide().'.*\.swp$'
 " fzfの設定
 " --------------------------------------------------
 " fzf でファイルを選択する時に利用するキーバインド
-" CTRL-tはtmuxに当てているので、CTRL-mを当てている
 " fzf_actionのデフォルトではctrl-xでsplitだがctrl-sの方が覚えやすいので変更
 let g:fzf_action = {
-  \ 'ctrl-m': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
@@ -316,7 +405,7 @@ nnoremap <S-F5> :PlugClean<BAR>PlugInstall<CR>
 " ノーマルモード: CTRL-l
 "  ファイル再読み込み(bufferを更新)
 "  検索ハイライトを消す
-nnoremap <C-l> :e<BAR>:noh<CR>
+nmap <C-l> :e<BAR>:noh<CR>
 
 " ノーマルモード: F8 でTagbar(構造)を表示
 nnoremap <F8> :TagbarToggle<CR>
@@ -354,14 +443,4 @@ nnoremap <Leader>tt :TranslateW <C-r><C-l><CR>
 " ビジュアルモード: 選択範囲を翻訳(window表示)
 vnoremap <Leader>tt :TranslateW<CR>
 
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
