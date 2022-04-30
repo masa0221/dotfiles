@@ -58,6 +58,16 @@ call plug#begin('~/.vim/plugged')
 
   " vim-lsp用の非同期のオートコンプリート
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+  " ファイルツリー
+  Plug 'lambdalisue/fern.vim'
+
+  " vimからnerdfontを使得るようにする
+  " 要インストール: https://github.com/ryanoasis/nerd-fonts#font-installation
+  Plug 'lambdalisue/nerdfont.vim'
+
+  " ファイルツリー(fern)の表示をnertfontを利用して表示
+  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 call plug#end()
 
 
@@ -283,6 +293,13 @@ let g:netrw_list_hide=netrw_gitignore#Hide().'.*\.swp$'
 
 
 " --------------------------------------------------
+" Fern(ファイラ)の設定
+" --------------------------------------------------
+" ファイルアイコンをnerdfontに変更
+let g:fern#renderer = "nerdfont"
+
+
+" --------------------------------------------------
 " fzfの設定
 " --------------------------------------------------
 " fzf でファイルを選択する時に利用するキーバインド
@@ -443,4 +460,6 @@ nnoremap <Leader>tt :TranslateW <C-r><C-l><CR>
 " ビジュアルモード: 選択範囲を翻訳(window表示)
 vnoremap <Leader>tt :TranslateW<CR>
 
+" ノーマルモード: ファイルツリーを左に表示
+nnoremap <Leader><Space> :Fern . -reveal=% -drawer -toggle<CR>
 
