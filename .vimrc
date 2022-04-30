@@ -5,69 +5,71 @@
 let g:plug_window='belowright 10new'
 
 call plug#begin('~/.vim/plugged')
-  " Vim日本語マニュアル
-  Plug 'https://github.com/vim-jp/vimdoc-ja.git'
 
-  " 翻訳
-  Plug 'voldikss/vim-translator'
+" Vim日本語マニュアル
+Plug 'https://github.com/vim-jp/vimdoc-ja.git'
 
-  " カラースキーム
-  Plug 'rafi/awesome-vim-colorschemes'
+" 翻訳
+Plug 'voldikss/vim-translator'
 
-  " ステータスライン表示
-  Plug 'itchyny/lightline.vim'
+" カラースキーム
+Plug 'rafi/awesome-vim-colorschemes'
 
-  " gitのブランチ表示をステータスラインで利用する用
-  Plug 'itchyny/vim-gitbranch'
+" ステータスライン表示
+Plug 'itchyny/lightline.vim'
 
-  " 行番号の左にgitの差分を表示
-  Plug 'airblade/vim-gitgutter'
+" gitのブランチ表示をステータスラインで利用する用
+Plug 'itchyny/vim-gitbranch'
 
-  " git操作系
-  Plug 'tpope/vim-fugitive'
+" 行番号の左にgitの差分を表示
+Plug 'airblade/vim-gitgutter'
 
-  " コメントアウトの操作
-  Plug 'tpope/vim-commentary'
+" git操作系
+Plug 'tpope/vim-fugitive'
 
-  " 括弧を自動入力
-  Plug 'jiangmiao/auto-pairs'
+" コメントアウトの操作
+Plug 'tpope/vim-commentary'
 
-  " Tagbar(構造)を表示
-  Plug 'preservim/tagbar'
+" 括弧を自動入力
+Plug 'jiangmiao/auto-pairs'
 
-  " markdown のプレビュー
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" Tagbar(構造)を表示
+Plug 'preservim/tagbar'
 
-  " fzf本体のインストール
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" markdown のプレビュー
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
-  " fzfのvimプラグイン
-  Plug 'junegunn/fzf.vim'
+" fzf本体のインストール
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
-  " windowのサイズ変更を簡単にするプラグイン
-  Plug 'simeji/winresizer'
+" fzfのvimプラグイン
+Plug 'junegunn/fzf.vim'
 
-  " Language Server Protocol plugin
-  Plug 'prabirshrestha/vim-lsp'
+" windowのサイズ変更を簡単にするプラグイン
+Plug 'simeji/winresizer'
 
-  " 言語サーバーのインストール・管理を簡単にする
-  Plug 'mattn/vim-lsp-settings'
+" Language Server Protocol plugin
+Plug 'prabirshrestha/vim-lsp'
 
-  " 非同期のオートコンプリート
-  Plug 'prabirshrestha/asyncomplete.vim'
+" 言語サーバーのインストール・管理を簡単にする
+Plug 'mattn/vim-lsp-settings'
 
-  " vim-lsp用の非同期のオートコンプリート
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" 非同期のオートコンプリート
+Plug 'prabirshrestha/asyncomplete.vim'
 
-  " ファイルツリー
-  Plug 'lambdalisue/fern.vim'
+" vim-lsp用の非同期のオートコンプリート
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-  " vimからnerdfontを使得るようにする
-  " 要インストール: https://github.com/ryanoasis/nerd-fonts#font-installation
-  Plug 'lambdalisue/nerdfont.vim'
+" ファイルツリー
+Plug 'lambdalisue/fern.vim'
 
-  " ファイルツリー(fern)の表示をnertfontを利用して表示
-  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" vimからnerdfontを使得るようにする
+" 要インストール: https://github.com/ryanoasis/nerd-fonts#font-installation
+Plug 'lambdalisue/nerdfont.vim'
+
+" ファイルツリー(fern)の表示をnertfontを利用して表示
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+
 call plug#end()
 
 
@@ -75,40 +77,40 @@ call plug#end()
 " Language Server Protocol
 " --------------------------------------------------
 function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gs <plug>(lsp-document-symbol-search)
+  nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gt <plug>(lsp-type-definition)
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  nmap <buffer> K <plug>(lsp-hover)
 
-    let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.go,*.scala call execute('LspDocumentFormatSync')
+  let g:lsp_format_sync_timeout = 1000
+  autocmd! BufWritePre *.go,*.scala call execute('LspDocumentFormatSync')
 
-    " refer to doc to add more commands
+  " refer to doc to add more commands
 endfunction
 
 augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  au!
+  " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
 " Scala
 if executable('metals-vim')
-   au User lsp_setup call lsp#register_server({
-      \ 'name': 'metals',
-      \ 'cmd': {server_info->['metals-vim']},
-      \ 'initialization_options': { 'rootPatterns': 'build.sbt' },
-      \ 'whitelist': [ 'scala', 'sbt' ],
-      \ })
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'metals',
+        \ 'cmd': {server_info->['metals-vim']},
+        \ 'initialization_options': { 'rootPatterns': 'build.sbt' },
+        \ 'whitelist': [ 'scala', 'sbt' ],
+        \ })
 endif
 
 " PHP
@@ -116,29 +118,29 @@ if executable('intelephense')
   augroup LspPHPIntelephense
     au!
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'intelephense',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
-        \ 'whitelist': ['php'],
-        \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
-        \ 'workspace_config': {
-        \   'intelephense': {
-        \     'files': {
-        \       'maxSize': 1000000,
-        \       'associations': ['*.php', '*.phtml'],
-        \       'exclude': [],
-        \     },
-        \     'completion': {
-        \       'insertUseDeclaration': v:true,
-        \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
-        \       'triggerParameterHints': v:true,
-        \       'maxItems': 100,
-        \     },
-        \     'format': {
-        \       'enable': v:true
-        \     },
-        \   },
-        \ }
-        \})
+          \ 'name': 'intelephense',
+          \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
+          \ 'whitelist': ['php'],
+          \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
+          \ 'workspace_config': {
+          \   'intelephense': {
+          \     'files': {
+          \       'maxSize': 1000000,
+          \       'associations': ['*.php', '*.phtml'],
+          \       'exclude': [],
+          \     },
+          \     'completion': {
+          \       'insertUseDeclaration': v:true,
+          \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
+          \       'triggerParameterHints': v:true,
+          \       'maxItems': 100,
+          \     },
+          \     'format': {
+          \       'enable': v:true
+          \     },
+          \   },
+          \ }
+          \})
   augroup END
 endif
 
@@ -305,8 +307,8 @@ let g:fern#renderer = "nerdfont"
 " fzf でファイルを選択する時に利用するキーバインド
 " fzf_actionのデフォルトではctrl-xでsplitだがctrl-sの方が覚えやすいので変更
 let g:fzf_action = {
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 
 " --------------------------------------------------
@@ -362,13 +364,13 @@ set laststatus=2
 let g:lightline={
       \ 'colorscheme': 'sonokai',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
-      \ },
-      \ }
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+          \   'gitbranch': 'gitbranch#name'
+          \ },
+          \ }
 
 
 " --------------------------------------------------
