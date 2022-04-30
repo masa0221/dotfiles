@@ -80,6 +80,7 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
   nmap <buffer> gd <plug>(lsp-definition)
   nmap <buffer> gs <plug>(lsp-document-symbol-search)
   nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
@@ -91,10 +92,20 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> ]g <plug>(lsp-next-diagnostic)
   nmap <buffer> K <plug>(lsp-hover)
 
+  " ドキュメントフォーマットのタイムアウト時間
   let g:lsp_format_sync_timeout = 1000
-  autocmd! BufWritePre *.go,*.scala call execute('LspDocumentFormatSync')
 
-  " refer to doc to add more commands
+  " LSPで検出するエラーを表示
+  let g:lsp_diagnostics_float_cursor = 1
+
+  " エラー時に表示される文字を指定
+  let g:lsp_diagnostics_signs_error = {'text': '✗'}
+
+  " 警告時に表示される文字を指定
+  let g:lsp_diagnostics_signs_warning = {'text': '‼'}
+
+  " bufferに書き込む前にドキュメントをフォーマット
+  autocmd! BufWritePre *.go,*.scala call execute('LspDocumentFormatSync')
 endfunction
 
 augroup lsp_install
