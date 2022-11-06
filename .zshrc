@@ -36,7 +36,7 @@ zinit for \
 # 遅延読み込みしても大丈夫なプラグイン
 zinit wait lucid for \
   zsh-users/zsh-completions \
-  matthewnessworthy/history-search-multi-word \
+  zdharma-continuum/history-search-multi-word \
   soimort/translate-shell \
   b4b4r07/enhancd \
   zdharma-continuum/fast-syntax-highlighting
@@ -86,7 +86,7 @@ zstyle ':completion:*:default' menu select=2
 # _approximate 近似値補完(候補が出る
 # _prefix 単語の途中の補完
 # _correct 完全な補完(候補無しで変換される
-zstyle ':completion:*' completer _complete _approximate # _prefix
+zstyle ':completion:*' completer _complete _approximate _prefix
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
@@ -151,6 +151,9 @@ setopt INTERACTIVE_COMMENTS
 
 # cd なしでカレントディレクトリを移動
 setopt AUTO_CD
+
+# completer の _prefix を使うときは必要なOption
+setopt COMPLETE_IN_WORD
 
 
 ##########################
