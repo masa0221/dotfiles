@@ -7,7 +7,7 @@ let g:plug_window='belowright 10new'
 call plug#begin('~/.vim/plugged')
 
 " Vim日本語マニュアル
-Plug 'https://github.com/vim-jp/vimdoc-ja.git'
+Plug 'vim-jp/vimdoc-ja'
 
 " 翻訳
 Plug 'voldikss/vim-translator'

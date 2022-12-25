@@ -36,7 +36,7 @@ zinit for \
 # 遅延読み込みしても大丈夫なプラグイン
 zinit wait lucid for \
   zsh-users/zsh-completions \
-  zdharma-continuum/history-search-multi-word \
+  zdharma/history-search-multi-word \
   soimort/translate-shell \
   b4b4r07/enhancd \
   zdharma-continuum/fast-syntax-highlighting
@@ -186,4 +186,10 @@ files=(
   $HOME/.p10k.zsh
 )
 load_files_if_exists ${files[*]}
+
+
+##########################
+# tmux の起動
+##########################
+[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
 
