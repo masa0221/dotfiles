@@ -1,7 +1,20 @@
 ##########################
 # tmux の起動
 ##########################
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
+if [ ! -z "$PS1" ]; then
+  if [ -z "$TMUX" ]; then
+    tmux_session=$(tmux ls -F '#S')
+    if [ $? -ne 0 ]; then
+      tmux
+    else
+      if [ ${#tmux_session} != 1 ]; then
+        tmux ls
+        read "tmux_session?Choose the session: "
+      fi
+      tmux attach -t ${tmux_session}
+    fi
+  fi
+fi
 
 
 ##########################
@@ -193,3 +206,4 @@ files=(
 )
 load_files_if_exists ${files[*]}
 
+export PATH="/opt/homebrew/opt/php@8.0/bin:$PATH"
