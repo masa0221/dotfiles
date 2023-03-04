@@ -206,4 +206,3 @@ files=(
 )
 load_files_if_exists ${files[*]}
 
-export PATH="/opt/homebrew/opt/php@8.0/bin:$PATH"
