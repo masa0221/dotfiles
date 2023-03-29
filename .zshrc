@@ -178,7 +178,7 @@ setopt COMPLETE_IN_WORD
 ##########################
 # エイリアス
 ##########################
-alias ls='ls --color=auto'
+alias ls='ls --color=always'
 alias ll='ls -l'
 alias l='ls -la'
 
@@ -187,7 +187,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
 
-alias grep='grep --color=auto'
+alias grep='grep --color=always'
 
 # 作業ディレクトリ作成&移動
 alias wkdir='mkdir ~/work/$(date "+%Y-%m-%d") && cd ~/work/$(date "+%Y-%m-%d")'
