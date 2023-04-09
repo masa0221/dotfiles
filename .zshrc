@@ -52,12 +52,14 @@ autoload -Uz _zinit
 zinit for \
   tarruda/zsh-autosuggestions
 
+zinit ice proto'git' pick'init.sh'
+zinit light b4b4r07/enhancd
+
 # 遅延読み込みしても大丈夫なプラグイン
 zinit wait lucid for \
   zsh-users/zsh-completions \
   zdharma/history-search-multi-word \
   soimort/translate-shell \
-  b4b4r07/enhancd \
   zdharma-continuum/fast-syntax-highlighting
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
