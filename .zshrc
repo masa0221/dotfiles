@@ -192,7 +192,7 @@ alias mkdir='mkdir -p'
 alias grep='grep --color=always'
 
 # 作業ディレクトリ作成&移動
-alias wkdir='mkdir ~/work/$(date "+%Y-%m-%d") && cd ~/work/$(date "+%Y-%m-%d")'
+alias wkdir='mkdir -p ${HOME}/work/$(date "+%Y-%m-%d") && cd ${HOME}/work/$(date "+%Y-%m-%d")'
 
 
 ##########################
