@@ -17,3 +17,4 @@
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+	default = current
