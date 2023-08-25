@@ -10,6 +10,7 @@ cd `dirname $0`
 function put_dot_files() {
   local dotfiles=(.zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin)
   for dotfile in ${dotfiles[@]}; do
+    [ ! -f ${dotfile} ] && continue
     local destination=${HOME}/${dotfile}
     if [ -e ${destination} -a ! -L ${destination} ]; then
       read -p "File ${dotfile} is already exists. Please choose the action. [b: backup, o: overwrite, q: quit]: " DOTFILE_ACTION
