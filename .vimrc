@@ -358,11 +358,12 @@ set virtualedit=block
 if has('termguicolors')
   set termguicolors
 endif
-" The configuration options should be placed before `colorscheme sonokai`
-let g:sonokai_style='maia'
-let g:sonokai_enable_italic=1
-let g:sonokai_disable_italic_comment=1
+
 try 
+  " The configuration options should be placed before `colorscheme sonokai`
+  let g:sonokai_style='maia'
+  let g:sonokai_disable_italic_comment=1
+
   colorscheme sonokai
 catch
   echo 'The specified theme could not be loaded. Note: It is occured always when initial installing.'
