@@ -70,6 +70,9 @@ Plug 'lambdalisue/nerdfont.vim'
 " ファイルツリー(fern)の表示をnertfontを利用して表示
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
+" Terraform
+Plug 'hashivim/vim-terraform' , { 'for': 'terraform'}
+
 call plug#end()
 
 
