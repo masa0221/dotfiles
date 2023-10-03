@@ -99,7 +99,7 @@ function! s:on_lsp_buffer_enabled() abort
   let g:lsp_format_sync_timeout = 1000
 
   " bufferに書き込む前にドキュメントをフォーマット
-  autocmd! BufWritePre *.go,*.scala call execute('LspDocumentFormatSync')
+  autocmd! BufWritePre *.go,*.scala,*.tf call execute('LspDocumentFormatSync')
 endfunction
 
 augroup lsp_install
