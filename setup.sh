@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -x
+set -x
 
 cd `dirname $0`
 
@@ -8,28 +8,31 @@ cd `dirname $0`
 ## functions
 ########################
 function put_dot_files() {
-  local dotfiles=(.zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin)
+  local dotfiles=(.zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin .local/bin)
   for dotfile in ${dotfiles[@]}; do
-    [ ! -f ${dotfile} ] && continue
+    [ ! -e ${dotfile} ] && continue  # ファイルまたはディレクトリが存在しない場合、スキップ
     local destination=${HOME}/${dotfile}
+    local destination_dir=$(dirname "${destination}")
+    [ ! -d "${destination_dir}" ] && mkdir -p "${destination_dir}"
+
     if [ -e ${destination} -a ! -L ${destination} ]; then
       read -p "File ${dotfile} is already exists. Please choose the action. [b: backup, o: overwrite, q: quit]: " DOTFILE_ACTION
       case "${DOTFILE_ACTION}" in
         [qQ]) exit 1 ;;
         [bB])
           local backupfile=${HOME}/${dotfile}.$(date "+%s")
-          cp -r ${destination} ${HOME}/${dotfile}.$(date "+%s")
+          cp -r ${destination} ${backupfile}
           echo "Backup file was created! (${backupfile})"
       esac
     fi
-    if [ -d "${destination}" ]; then
-      # for directory
+    if [ -e "${destination}" ]; then  # ファイルまたはディレクトリが存在する場合
       rm -r ${destination}
     fi
     ln -s -f $(pwd)/${dotfile} ${destination}
     echo "${dotfile} was created"
   done
 }
+
 
 function get_vim_plug_path() {
   echo "${HOME}/.vim/autoload/plug.vim"
