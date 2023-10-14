@@ -55,16 +55,6 @@ debug_print() {
     for num in {0..255}; do printf "%s\033[38;5;${num}mcolour${num}\033[0m \t"; [ $(expr $((num+1)) % 8) -eq 0 ] && printf "\n"; done
   fi
 
-  local dev_fg=$(get_ansi_escape_code_fg ${dev_fg_color})
-  local dev_bg=$(get_ansi_escape_code_bg ${dev_bg_color})
-  local test_fg=$(get_ansi_escape_code_fg ${test_fg_color})
-  local test_bg=$(get_ansi_escape_code_bg ${test_bg_color})
-  local stg_fg=$(get_ansi_escape_code_fg ${stg_fg_color})
-  local stg_bg=$(get_ansi_escape_code_bg ${stg_bg_color})
-  local prod_fg=$(get_ansi_escape_code_fg ${prod_fg_color})
-  local prod_bg=$(get_ansi_escape_code_bg ${prod_bg_color})
-  local reset=$(get_ansi_escape_code_reset)
-
   printf "$(get_output "dev-env" "dev")\n"
   printf "$(get_output "test-env" "test")\n"
   printf "$(get_output "stg-env" "stg")\n"
@@ -121,7 +111,7 @@ get_output() {
   local bold=$( [ "${!bold_variable}" == "1" ] && get_ansi_escape_code_bold || echo "" )
   local fg=$(get_ansi_escape_code_fg ${!fg_color_variable})
   local bg=$(get_ansi_escape_code_bg ${!bg_color_variable})
-  reset=$(get_ansi_escape_code_reset)
+  local reset=$(get_ansi_escape_code_reset)
   echo "${fg}${bg}${bold} ⎈ ${context} ${reset}"
 }
 
