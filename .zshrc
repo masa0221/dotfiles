@@ -52,9 +52,6 @@ autoload -Uz _zinit
 zinit for \
   tarruda/zsh-autosuggestions
 
-zinit ice proto'git' pick'init.sh'
-zinit light b4b4r07/enhancd
-
 # 遅延読み込みしても大丈夫なプラグイン
 zinit wait lucid for \
   zsh-users/zsh-completions \
@@ -63,6 +60,9 @@ zinit wait lucid for \
   zdharma-continuum/fast-syntax-highlighting
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+export ENHANCD_COMMAND=ecd
+zinit ice depth=1 pick'init.sh'; zinit light b4b4r07/enhancd
 
 
 ##########################
@@ -106,7 +106,7 @@ zstyle ':completion:*' group-name '' # 空文字にしておくとタグ名が�
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # 補完対象の色が出る(ディレクトリやファイルが色でわかるようになる)
-zstyle ':completion:*' list-colors "${LS_COLORS}"
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # menu: 補完を選ぶときに色がつく（背景色） menu true にすると1度タブを押すだけで補完される
 # select: 指定した候補以上になると選択(背景色が変わる)
@@ -116,7 +116,7 @@ zstyle ':completion:*:default' menu select=2
 # _approximate 近似値補完(候補が出る
 # _prefix 単語の途中の補完
 # _correct 完全な補完(候補無しで変換される
-zstyle ':completion:*' completer _complete _approximate _prefix
+zstyle ':completion:*' completer _complete _approximate _correct _prefix
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
