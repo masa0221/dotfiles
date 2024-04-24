@@ -129,6 +129,11 @@ autoload -U compinit
 # ユーティリティ関数が定義されて必要なすべてのシェル関数が自動ロードされるように調整される
 compinit
 
+# 必要な補完スクリプトを読み込む(compinit関数を読み込んだ後に書く必要がある)
+[ -x "$(command -v gh)" ] && eval "$(gh completion -s zsh)"
+[ -x "$(command -v minikube)" ] && eval "$(minikube completion zsh)"
+[ -x "$(command -v kubectl)" ] && eval "$(kubectl completion zsh)"
+
 
 ##########################
 # シェル変数
