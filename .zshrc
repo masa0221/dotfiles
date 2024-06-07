@@ -134,6 +134,7 @@ compinit
 [ -x "$(command -v docker)" ] && eval "$(docker completion zsh)"
 [ -x "$(command -v minikube)" ] && eval "$(minikube completion zsh)"
 [ -x "$(command -v kubectl)" ] && eval "$(kubectl completion zsh)"
+[ -x "$(command -v kind)" ] && eval "$(kind completion zsh)"
 
 
 ##########################
