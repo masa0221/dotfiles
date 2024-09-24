@@ -73,6 +73,9 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 " Terraform
 Plug 'hashivim/vim-terraform' , { 'for': 'terraform'}
 
+" Helm の syntax hiright
+Plug 'towolf/vim-helm'
+
 call plug#end()
 
 
@@ -159,6 +162,32 @@ if executable('gopls')
   autocmd BufWritePre *.go LspDocumentFormatSync
 endif
 
+" YAML
+augroup lsp_yaml
+  autocmd!
+  " YAML ファイルの設定
+  autocmd FileType yaml setlocal omnifunc=lsp#complete
+  autocmd FileType yaml setlocal filetype=yaml.helm
+augroup END
+
+" Helm テンプレートファイルを無視する設定
+if executable('yaml-language-server')
+  let g:lsp_settings = {
+  \   'yaml-language-server': {
+  \     'config': {
+  \       'yaml': {
+  \         'schemas': {
+  \           'https://json.schemastore.org/github-workflow.json': '*.github/workflows/*'
+  \         },
+  \         'ignore': [
+  \           '**/charts/**/templates/**'
+  \         ]
+  \       }
+  \     }
+  \   }
+  \ }
+endif
+
 
 " LSPで検出するエラーを表示
 let g:lsp_diagnostics_float_cursor = 1
@@ -177,7 +206,7 @@ let g:lsp_diagnostics_signs_warning = {'text': '‼'}
 " 表示設定
 " --------------------------------------------------
 " 行番号の表示
-set number
+set relativenumber
 
 " 行番号の強調表示
 set cursorline
@@ -291,9 +320,17 @@ set showtabline=2
 
 
 " --------------------------------------------------
+" 未分類
+" --------------------------------------------------
+" 開いているファイルにディレクトリを移動(オムニ補完でファイルを相対パスで指定しやすくするため)
+set autochdir
+
+
+" --------------------------------------------------
 " ファイル種類の関連付け
 " --------------------------------------------------
 autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala
+autocmd BufRead,BufNewFile *.md,*.mdx set filetype=markdown
 
 
 " --------------------------------------------------
