@@ -76,6 +76,9 @@ Plug 'hashivim/vim-terraform' , { 'for': 'terraform'}
 " Helm の syntax hiright
 Plug 'towolf/vim-helm'
 
+" Emmet
+Plug 'mattn/emmet-vim'
+
 call plug#end()
 
 
