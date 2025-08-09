@@ -471,6 +471,9 @@ let g:translator_window_type='popup'
 " <Leader> を スペースキーに変更
 let mapleader="\<Space>"
 
+" クリップボードにコピー
+noremap gy "+y
+
 " ノーマルモード: F2 で.vimrcを開く
 nnoremap <F2> :e $MYVIMRC<CR>
 

@@ -1,7 +1,8 @@
 ##########################
 # tmux の起動
 ##########################
-if [ ! -z "$PS1" ]; then
+# インタラクティブシェルかつ VS Code ターミナル以外の場合のみ実行
+if [ ! -z "$PS1" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
   if [ -z "$TMUX" ]; then
     tmux_session=$(tmux ls -F '#S')
     if [ $? -ne 0 ]; then
@@ -48,21 +49,28 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
-# 遅延読み込みすると動かないプラグイン
-zinit for \
-  tarruda/zsh-autosuggestions
-
-# 遅延読み込みしても大丈夫なプラグイン
+# 遅延読み込みが可能なプラグインを設定
 zinit wait lucid for \
   zsh-users/zsh-completions \
   zdharma/history-search-multi-word \
   soimort/translate-shell \
   zdharma-continuum/fast-syntax-highlighting
 
+# 遅延読み込みができないプラグイン
+zinit light tarruda/zsh-autosuggestions
+
+# 必要なコマンドの補完を動的にロード
+[ -x "$(command -v gh)" ] && zinit ice wait'0' atinit"source <(gh completion -s zsh)" lucid
+[ -x "$(command -v kubectl)" ] && zinit ice wait'0' atinit"source <(kubectl completion zsh)" lucid
+[ -x "$(command -v npm)" ] && zinit ice wait'0' atinit"source <(npm completion)" lucid
+
+# Powerlevel10k の軽量化と遅延読み込み
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+# enhancd プラグインの読み込み
 export ENHANCD_COMMAND=ecd
-zinit ice depth=1 pick'init.sh'; zinit light b4b4r07/enhancd
+zinit ice depth=1 pick'init.sh' wait'1' lucid
+zinit light b4b4r07/enhancd
 
 
 ##########################
@@ -130,10 +138,9 @@ autoload -U compinit
 compinit
 
 # 必要な補完スクリプトを読み込む(compinit関数を読み込んだ後に書く必要がある)
-[ -x "$(command -v gh)" ] && eval "$(gh completion -s zsh)"
+# TODO: zinit で管理
 [ -x "$(command -v docker)" ] && eval "$(docker completion zsh)"
 [ -x "$(command -v minikube)" ] && eval "$(minikube completion zsh)"
-[ -x "$(command -v kubectl)" ] && eval "$(kubectl completion zsh)"
 [ -x "$(command -v kind)" ] && eval "$(kind completion zsh)"
 
 
