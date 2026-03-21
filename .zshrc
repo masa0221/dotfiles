@@ -63,6 +63,9 @@ zinit light tarruda/zsh-autosuggestions
 [ -x "$(command -v gh)" ] && zinit ice wait'0' atinit"source <(gh completion -s zsh)" lucid
 [ -x "$(command -v kubectl)" ] && zinit ice wait'0' atinit"source <(kubectl completion zsh)" lucid
 [ -x "$(command -v npm)" ] && zinit ice wait'0' atinit"source <(npm completion)" lucid
+[ -x "$(command -v docker)" ] && zinit ice wait'0' atinit'eval "$(docker completion zsh)"' lucid
+[ -x "$(command -v minikube)" ] && zinit ice wait'0' atinit'eval "$(minikube completion zsh)"' lucid
+[ -x "$(command -v kind)" ] && zinit ice wait'0' atinit'eval "$(kind completion zsh)"' lucid
 
 # Powerlevel10k の軽量化と遅延読み込み
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -133,15 +136,13 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 bindkey "^[[Z" reverse-menu-complete
 
 # 補完機能の関数(compinit)を利用できるようにする
+# .zcompdump が1日以内なら -C でキャッシュ利用、古ければフルスキャン
 autoload -U compinit
-# ユーティリティ関数が定義されて必要なすべてのシェル関数が自動ロードされるように調整される
-compinit
-
-# 必要な補完スクリプトを読み込む(compinit関数を読み込んだ後に書く必要がある)
-# TODO: zinit で管理
-[ -x "$(command -v docker)" ] && eval "$(docker completion zsh)"
-[ -x "$(command -v minikube)" ] && eval "$(minikube completion zsh)"
-[ -x "$(command -v kind)" ] && eval "$(kind completion zsh)"
+if [[ -f ${ZDOTDIR:-$HOME}/.zcompdump && $(date +'%j') == $(stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump 2>/dev/null) ]]; then
+  compinit -C
+else
+  compinit
+fi
 
 
 ##########################
