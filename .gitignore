@@ -1,6 +1,7 @@
 Brewfile.lock.json
 .DS_Store
 *~
+*.un~
 *.swp
 *.swo
 *.idea
@@ -16,6 +17,10 @@ Session.vim
 .ammonite/
 metals.sbt
 
+.local/
+
 .claude/settings.local.json
+.claude/worktrees/
 .mcp.json
+.serena/
 
