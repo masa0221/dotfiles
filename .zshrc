@@ -227,6 +227,12 @@ tnew() {
   dir="${PWD}"
   session="$(basename "$dir")"
 
+  if [ "$dir" = "$HOME" ]; then
+    session="~"
+  else
+    session="$(basename "$dir")"
+  fi
+
   if [ -n "$TMUX" ]; then
     # 既にtmux起動中(同名のセッションがあれば利用し、なければ作成)
     tmux has-session -t "$session" 2>/dev/null \
