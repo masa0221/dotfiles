@@ -220,6 +220,26 @@ alias wkdir='mkdir -p ${HOME}/work/$(date "+%Y-%m-%d") && cd ${HOME}/work/$(date
 
 
 ##########################
+# tmux セッション作成
+##########################
+tnew() {
+  local dir session
+  dir="${PWD}"
+  session="$(basename "$dir")"
+
+  if [ -n "$TMUX" ]; then
+    # 既にtmux起動中(同名のセッションがあれば利用し、なければ作成)
+    tmux has-session -t "$session" 2>/dev/null \
+      || tmux new-session -d -s "$session" -c "$dir"
+    tmux switch-client -t "$session"
+  else
+    # tmuxが起動していないとき
+    tmux new-session -A -s "$session" -c "$dir"
+  fi
+}
+
+
+##########################
 # ファイル読み込み
 ##########################
 files=(
