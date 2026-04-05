@@ -1,14 +1,12 @@
 #!/bin/bash
 
-set -x
-
 cd `dirname $0`
 
 ########################
 ## functions
 ########################
 function put_dot_files() {
-  local dotfiles=(.zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin)
+  local dotfiles=(.zshrc .zsh/functions.zsh .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin)
   for dotfile in ${dotfiles[@]}; do
     [ ! -e ${dotfile} ] && continue  # ファイルまたはディレクトリが存在しない場合、スキップ
     local destination=${HOME}/${dotfile}

@@ -1,19 +1,15 @@
 ##########################
+# 関数（最初に読み込む）
+##########################
+[[ -r ${HOME}/.zsh/functions.zsh ]] && source ${HOME}/.zsh/functions.zsh
+
+##########################
 # tmux の起動
 ##########################
 # インタラクティブシェルかつ VS Code ターミナル以外の場合のみ実行
-if [ ! -z "$PS1" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
-  if [ -z "$TMUX" ]; then
-    tmux_session=$(tmux ls -F '#S')
-    if [ $? -ne 0 ]; then
-      tmux
-    else
-      if [ ${#tmux_session} != 1 ]; then
-        tmux ls
-        read "tmux_session?Choose the session: "
-      fi
-      tmux attach -t ${tmux_session}
-    fi
+if [[ -n $PS1 ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
+  if [[ -z $TMUX ]]; then
+    zsh_tmux_autostart
   fi
 fi
 
@@ -21,12 +17,6 @@ fi
 ##########################
 # ファイル読み込み
 ##########################
-function load_files_if_exists() {
-  local file
-  for file in ${@}; do
-    [ -r ${file} ] && source ${file}
-  done
-}
 # Powerlevel10k
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -144,6 +134,17 @@ else
   compinit
 fi
 
+# tmux セッション名のタブ補完（tta コマンド用）
+function tta() {
+  [[ -n $1 ]] && tmux attach -t "$1"
+}
+function _tta_sessions() {
+  local -a sessions
+  sessions=($(tmux ls -F '#S' 2>/dev/null))
+  (( ${#sessions[@]} )) && compadd -a sessions
+}
+compdef _tta_sessions tta
+
 
 ##########################
 # シェル変数
@@ -217,32 +218,6 @@ alias grep='grep --color=always'
 
 # 作業ディレクトリ作成&移動
 alias wkdir='mkdir -p ${HOME}/work/$(date "+%Y-%m-%d") && cd ${HOME}/work/$(date "+%Y-%m-%d")'
-
-
-##########################
-# tmux セッション作成
-##########################
-tnew() {
-  local dir session
-  dir="${PWD}"
-  session="$(basename "$dir")"
-
-  if [ "$dir" = "$HOME" ]; then
-    session="~"
-  else
-    session="$(basename "$dir")"
-  fi
-
-  if [ -n "$TMUX" ]; then
-    # 既にtmux起動中(同名のセッションがあれば利用し、なければ作成)
-    tmux has-session -t "$session" 2>/dev/null \
-      || tmux new-session -d -s "$session" -c "$dir"
-    tmux switch-client -t "$session"
-  else
-    # tmuxが起動していないとき
-    tmux new-session -A -s "$session" -c "$dir"
-  fi
-}
 
 
 ##########################
