@@ -9,10 +9,19 @@ function load_files_if_exists() {
 }
 
 ##########################
+# tmux -t 用ターゲット（セッション名の完全一致）
+# セッション名が ~ だけだと曖昧マッチで has-session が偽になり、
+# duplicate session / no marked target の原因になる
+##########################
+_tmux_session_t() {
+  print -r -- "=${1}"
+}
+
+##########################
 # tmux セッション作成
 ##########################
 tnew() {
-  local dir session
+  local dir session tt
   dir="${PWD}"
   session="$(basename "$dir")"
 
@@ -21,12 +30,13 @@ tnew() {
   else
     session="$(basename "$dir")"
   fi
+  tt=$(_tmux_session_t "$session")
 
   if [ -n "$TMUX" ]; then
     # 既にtmux起動中(同名のセッションがあれば利用し、なければ作成)
-    tmux has-session -t "$session" 2>/dev/null \
+    tmux has-session -t "$tt" 2>/dev/null \
       || tmux new-session -d -s "$session" -c "$dir"
-    tmux switch-client -t "$session"
+    tmux switch-client -t "$tt"
   else
     # tmuxが起動していないとき
     tmux new-session -A -s "$session" -c "$dir"
@@ -83,11 +93,11 @@ zsh_tmux_autostart() {
   (( ${#sessions[@]} == 0 )) && { tnew; return; }
 
   if (( ${#sessions[@]} == 1 )); then
-    tmux attach -t "${sessions[1]}"
+    tmux attach -t "$(_tmux_session_t "${sessions[1]}")"
     return
   fi
 
   tmux ls
   picked=$(_pick_tmux_session) || return 0
-  [[ -n $picked ]] && tmux attach -t "$picked"
+  [[ -n $picked ]] && tmux attach -t "$(_tmux_session_t "$picked")"
 }

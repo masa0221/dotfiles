@@ -136,7 +136,7 @@ fi
 
 # tmux セッション名のタブ補完（tta コマンド用）
 function tta() {
-  [[ -n $1 ]] && tmux attach -t "$1"
+  [[ -n $1 ]] && tmux attach -t "$(_tmux_session_t "$1")"
 }
 function _tta_sessions() {
   local -a sessions
