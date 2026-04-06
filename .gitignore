@@ -18,9 +18,11 @@ Session.vim
 metals.sbt
 
 .local/
+zsh/secrets.zsh
 
 .claude/settings.local.json
 .claude/worktrees/
 .mcp.json
 .serena/
 
+.zcompdump
