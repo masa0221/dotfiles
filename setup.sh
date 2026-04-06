@@ -69,6 +69,25 @@ function setup_secrets() {
   fi
 }
 
+function put_agent_zdotdir() {
+  local src="$(pwd)/zsh/agent-zdotdir"
+  local dest="${HOME}/.zsh/agent-zdotdir"
+
+  [ ! -d "${src}" ] && return 0
+
+  if [ -e "${dest}" -a ! -L "${dest}" ]; then
+    read -p "Directory .zsh/agent-zdotdir already exists. [b: backup, o: overwrite, q: quit]: " AGENT_ACTION
+    case "${AGENT_ACTION}" in
+      [qQ]) exit 1 ;;
+      [bB])
+        mv "${dest}" "${dest}.$(date "+%s")"
+        echo "Backup created for agent-zdotdir"
+    esac
+  fi
+  ln -s -f "${src}" "${dest}"
+  echo "agent-zdotdir was created"
+}
+
 
 function get_vim_plug_path() {
   echo "${HOME}/.vim/autoload/plug.vim"
@@ -124,6 +143,9 @@ put_zsh_env_d
 
 display_message "secrets setup"
 setup_secrets
+
+display_message "agent-zdotdir setup"
+put_agent_zdotdir
 
 display_message "Vim settings"
 install_vim_plug

@@ -4,6 +4,30 @@
 [[ -r ${HOME}/.zsh/functions.zsh ]] && source ${HOME}/.zsh/functions.zsh
 
 ##########################
+# AI Agent 検知 → 軽量モード
+##########################
+# Cursor / Antigravity / Codex が Agent ターミナル起動時にセットする環境変数
+if [[ -n "$CURSOR_AGENT" || -n "$ANTIGRAVITY_AGENT" || -n "$CODEX_SANDBOX" ]]; then
+  # --- 最小限の対話設定のみ ---
+  HISTFILE=${HOME}/.zsh_history
+  HISTSIZE=10000
+  SAVEHIST=50000
+  setopt HIST_IGNORE_DUPS HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS SHARE_HISTORY
+  setopt NO_BEEP INTERACTIVE_COMMENTS AUTO_CD
+
+  TERM=xterm-256color
+  PS1='%F{cyan}%~%f $ '
+
+  alias ls='ls --color=always'
+  alias ll='ls -l'
+  alias l='ls -la'
+  alias grep='grep --color=always'
+
+  autoload -U compinit && compinit -C
+  return 0
+fi
+
+##########################
 # tmux の起動
 ##########################
 # インタラクティブシェルかつ VS Code ターミナル以外の場合のみ実行
