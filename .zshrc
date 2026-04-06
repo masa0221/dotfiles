@@ -1,13 +1,25 @@
 ##########################
 # 関数（最初に読み込む）
 ##########################
-[[ -r ${HOME}/.zsh/functions.zsh ]] && source ${HOME}/.zsh/functions.zsh
+if [[ -r ${HOME}/.zsh/functions.zsh ]]; then
+  source ${HOME}/.zsh/functions.zsh
+elif [[ -r ${HOME}/dotfiles/zsh/functions.zsh ]]; then
+  # 既存環境からの移行中でも起動できるよう、repo 配下をフォールバック
+  source ${HOME}/dotfiles/zsh/functions.zsh
+fi
 
 ##########################
 # AI Agent 検知 → 軽量モード
 ##########################
 # Cursor / Antigravity / Codex が Agent ターミナル起動時にセットする環境変数
 if [[ -n "$CURSOR_AGENT" || -n "$ANTIGRAVITY_AGENT" || -n "$CODEX_SANDBOX" ]]; then
+  # ログインシェルでなくても必要な PATH/ツールは env.d から補う
+  for _envfile in ${HOME}/.zsh/env.d/*.zsh(N); do
+    source "$_envfile"
+  done
+  unset _envfile
+  [[ -f ${HOME}/.zsh/secrets.zsh ]] && source ${HOME}/.zsh/secrets.zsh
+
   # --- 最小限の対話設定のみ ---
   HISTFILE=${HOME}/.zsh_history
   HISTSIZE=10000

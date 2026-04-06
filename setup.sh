@@ -6,7 +6,7 @@ cd `dirname $0`
 ## functions
 ########################
 function put_dot_files() {
-  local dotfiles=(.zshenv .zprofile .zshrc .zsh/functions.zsh .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin)
+  local dotfiles=(.zshenv .zprofile .zshrc .gitconfig .gitignore .vimrc .tmux.conf .ideavimrc .vim/ftplugin)
   for dotfile in ${dotfiles[@]}; do
     [ ! -e ${dotfile} ] && continue  # ファイルまたはディレクトリが存在しない場合、スキップ
     local destination=${HOME}/${dotfile}
@@ -31,17 +31,47 @@ function put_dot_files() {
   done
 }
 
+function put_zsh_functions() {
+  local src="$(pwd)/zsh/functions.zsh"
+  local dest="${HOME}/.zsh/functions.zsh"
+  local dest_dir
+
+  [ ! -f "${src}" ] && return 0
+
+  dest_dir=$(dirname "${dest}")
+  [ ! -d "${dest_dir}" ] && mkdir -p "${dest_dir}"
+
+  if [ -e "${dest}" -a ! -L "${dest}" ]; then
+    read -p "File .zsh/functions.zsh already exists. [b: backup, o: overwrite, q: quit]: " ZSH_FUNCTIONS_ACTION
+    case "${ZSH_FUNCTIONS_ACTION}" in
+      [qQ]) exit 1 ;;
+      [bB])
+        cp "${dest}" "${dest}.$(date "+%s")"
+        echo "Backup created for .zsh/functions.zsh"
+    esac
+  fi
+
+  ln -s -f "${src}" "${dest}"
+  echo ".zsh/functions.zsh was created"
+}
+
 function put_zsh_env_d() {
   local envd_src="$(pwd)/zsh/env.d"
   local envd_dest="${HOME}/.zsh/env.d"
+  local envfile
+  local basename
+  local dest
+  local nullglob_old
 
   [ ! -d "${envd_src}" ] && return 0
 
   mkdir -p "${envd_dest}"
 
+  nullglob_old=$(shopt -p nullglob 2>/dev/null || true)
+  shopt -s nullglob
   for envfile in ${envd_src}/*.zsh; do
-    local basename=$(basename "${envfile}")
-    local dest="${envd_dest}/${basename}"
+    basename=$(basename "${envfile}")
+    dest="${envd_dest}/${basename}"
     if [ -e "${dest}" -a ! -L "${dest}" ]; then
       read -p "File .zsh/env.d/${basename} already exists. [b: backup, o: overwrite, q: quit]: " ENVD_ACTION
       case "${ENVD_ACTION}" in
@@ -54,6 +84,7 @@ function put_zsh_env_d() {
     ln -s -f "${envfile}" "${dest}"
     echo ".zsh/env.d/${basename} was created"
   done
+  eval "${nullglob_old}"
 }
 
 function setup_secrets() {
@@ -137,6 +168,9 @@ EOT
 
 display_message "dotfiles settings"
 put_dot_files
+
+display_message "zsh functions"
+put_zsh_functions
 
 display_message "zsh env.d modules"
 put_zsh_env_d
