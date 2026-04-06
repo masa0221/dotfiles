@@ -25,3 +25,4 @@ zsh/secrets.zsh
 .mcp.json
 .serena/
 
+.zcompdump
