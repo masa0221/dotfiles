@@ -43,7 +43,7 @@ fi
 # tmux の起動
 ##########################
 # インタラクティブシェルかつ VS Code ターミナル以外の場合のみ実行
-if [[ -n $PS1 ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
+if [[ -n $PS1 ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$VSCODE_RESOLVING_ENVIRONMENT" ]]; then
   if [[ -z $TMUX ]]; then
     zsh_tmux_autostart
   fi
