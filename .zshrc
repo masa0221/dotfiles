@@ -92,6 +92,7 @@ zinit light tarruda/zsh-autosuggestions
 [ -x "$(command -v docker)" ] && zinit ice wait'0' atinit'eval "$(docker completion zsh)"' lucid
 [ -x "$(command -v minikube)" ] && zinit ice wait'0' atinit'eval "$(minikube completion zsh)"' lucid
 [ -x "$(command -v kind)" ] && zinit ice wait'0' atinit'eval "$(kind completion zsh)"' lucid
+[ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 
 # Powerlevel10k の軽量化と遅延読み込み
 zinit ice depth=1; zinit light romkatv/powerlevel10k
