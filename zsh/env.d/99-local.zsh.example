@@ -1,0 +1,18 @@
+#
+# マシン / プロジェクト固有のローカル設定
+#
+# このファイルをコピーして、同じディレクトリに 99-local.zsh として配置してください
+# （リポジトリには含めません: .gitignore に追加済み）
+#
+#   cp zsh/env.d/99-local.zsh.example zsh/env.d/99-local.zsh
+#   ./setup.sh   # ~/.zsh/env.d/99-local.zsh への symlink を貼り直す場合
+#
+# env.d/*.zsh は番号順にロードされるため、99-local.zsh は最後に読み込まれ、
+# 既存モジュールの設定を上書きできます。
+#
+
+# 例: ローカルにツール群を置いているディレクトリを PATH に追加
+# [ -d "$HOME/path/to/local/tools" ] && export PATH="$HOME/path/to/local/tools:$PATH"
+
+# 例: マシン固有の環境変数
+# export SOME_API_ENDPOINT="https://example.local"

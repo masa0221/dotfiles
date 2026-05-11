@@ -19,6 +19,7 @@ metals.sbt
 
 .local/
 zsh/secrets.zsh
+zsh/env.d/99-local.zsh
 
 .claude/settings.local.json
 .claude/worktrees/
