@@ -22,7 +22,7 @@ _tmux_session_t() {
 ##########################
 tnew() {
   local dir session tt
-  local src_pane src_session src_path src_panes target_home close_source_pane
+  local src_pane src_session src_path target_home close_source_pane
   dir="${PWD}"
   session="$(basename "$dir")"
 
@@ -37,7 +37,6 @@ tnew() {
     src_pane="$(tmux display-message -p '#{pane_id}' 2>/dev/null)"
     src_session="$(tmux display-message -p '#S' 2>/dev/null)"
     src_path="$(tmux display-message -p '#{pane_current_path}' 2>/dev/null)"
-    src_panes="$(tmux display-message -p '#{window_panes}' 2>/dev/null)"
 
     # 既にtmux起動中(同名のセッションがあれば利用し、なければ作成)
     if tmux has-session -t "$tt" 2>/dev/null; then
@@ -53,8 +52,7 @@ tnew() {
     if [[ -n "$src_pane" \
       && "$src_session" != "$session" \
       && "$src_path" = "$target_home" \
-      && "$dir" = "$target_home" \
-      && "${src_panes:-0}" -gt 1 ]]; then
+      && "$dir" = "$target_home" ]]; then
       close_source_pane=1
     fi
 
