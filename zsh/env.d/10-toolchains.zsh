@@ -11,6 +11,11 @@ export BUN_INSTALL="$HOME/.bun"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 ##########################
+# Dart pub global packages
+##########################
+[ -d "$HOME/.pub-cache/bin" ] && export PATH="$PATH:$HOME/.pub-cache/bin"
+
+##########################
 # krew (kubectl plugin manager)
 ##########################
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
