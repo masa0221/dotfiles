@@ -12,7 +12,7 @@
 	wa = "!f() { git worktree add -b \"$1\" \"../$1\" main; }; f"
 
 [include]
-	path = ~/.gitconfig-user
+	path = ~/.gitconfig.local
 
 [pull]
 	rebase = false
