@@ -18,6 +18,8 @@ Session.vim
 metals.sbt
 
 .local/
+.gitconfig.local
+.gitconfig-user
 zsh/secrets.zsh
 zsh/env.d/99-local.zsh
 

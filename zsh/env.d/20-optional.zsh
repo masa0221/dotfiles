@@ -4,15 +4,16 @@
 [ -f ~/.orbstack/shell/init.zsh ] && source ~/.orbstack/shell/init.zsh 2>/dev/null
 
 ##########################
-# Antigravity CLI（要マシン調整）
+# Antigravity（要マシン調整）
 ##########################
 [ -d "$HOME/.antigravity/antigravity/bin" ] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 ##########################
 # JVM オプション（要プロジェクト調整）
 ##########################
-export SBT_OPTS="-Xmx4G -Xms512M"
-export BLOOP_JAVA_OPTS="-Xms512m -Xmx4g -XX:+UseZGC"
+export SBT_OPTS="-Xmx2G -Xms512M"
+export BLOOP_JAVA_OPTS="-Xms512m -Xmx1g -XX:+UseZGC"
 
 ##########################
 # mcp-compose CLI

@@ -21,10 +21,27 @@ _tmux_session_t() {
 # tmux セッション作成
 ##########################
 tnew() {
-  local dir session tt
+  local arg dir session tt
   local src_pane src_session src_path target_home close_source_pane
-  dir="${PWD}"
-  session="$(basename "$dir")"
+
+  if (( $# > 1 )); then
+    print -u2 "usage: tnew [directory|file]"
+    return 2
+  fi
+
+  if (( $# == 0 )); then
+    dir="${PWD}"
+  else
+    arg="$1"
+    if [[ -d "$arg" ]]; then
+      dir="${arg:a}"
+    elif [[ -e "$arg" ]]; then
+      dir="${arg:h:a}"
+    else
+      print -u2 "tnew: no such file or directory: $arg"
+      return 1
+    fi
+  fi
 
   if [ "$dir" = "$HOME" ]; then
     session="~"
@@ -81,6 +98,7 @@ _pick_tmux_session() {
   sessions=(${(f)"$(tmux ls -F '#S' 2>/dev/null)"})
   (( ${#sessions[@]} == 0 )) && return 1
   (( ${#sessions[@]} == 1 )) && { print -r -- "$sessions[1]"; return 0 }
+  [[ -t 0 && -t 1 ]] || return 1
 
   if command -v fzf >/dev/null 2>&1; then
     printf '%s\n' "${sessions[@]}" | fzf \
@@ -106,6 +124,10 @@ _pick_tmux_session() {
 # （インタラクティブかつ VS Code ターミナル以外で TMUX 未設定のとき）
 ##########################
 zsh_tmux_autostart() {
+  [[ -o interactive ]] || return 0
+  [[ -z ${ZSH_EXECUTION_STRING:-} ]] || return 0
+  [[ -t 0 && -t 1 ]] || return 0
+
   command -v tmux >/dev/null || return 0
 
   local -a sessions
