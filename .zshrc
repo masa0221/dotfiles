@@ -43,11 +43,15 @@ fi
 # tmux の起動
 ##########################
 # 通常の実端末だけで実行する。GUI アプリの環境解決用 `zsh -ilc ...` では起動しない。
+# Codex 統合ターミナルでは、チャット復帰時の端末属性応答が入力へ漏れるのを避けるため tmux を自動起動しない。
 if [[ -o interactive \
   && -z ${ZSH_EXECUTION_STRING:-} \
   && -t 0 \
   && -t 1 \
   && -z ${TMUX:-} \
+  && -z ${CODEX_APP_TITLE:-} \
+  && -z ${CODEX_THREAD_ID:-} \
+  && ${CODEX_INTERNAL_ORIGINATOR_OVERRIDE:-} != "Codex Desktop" \
   && "$TERM_PROGRAM" != "vscode" \
   && -z ${VSCODE_RESOLVING_ENVIRONMENT:-} ]]; then
   zsh_tmux_autostart
