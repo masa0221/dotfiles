@@ -9,7 +9,7 @@
 	fc = fetch -p
 	alias = !"git config --list | grep alias | sed -e 's/^alias.//g'"
 	wl = "!dir=$(git worktree list | fzf | awk '{print $1}'); cd $dir"
-	wa = "!f() { git worktree add -b \"$1\" \"../$1\" main; }; f"
+	wa = "!f() { root=$(git rev-parse --show-toplevel); git worktree add -b \"$1\" \"$root/.claude/worktrees/$1\" main; }; f"
 
 [include]
 	path = ~/.gitconfig.local
